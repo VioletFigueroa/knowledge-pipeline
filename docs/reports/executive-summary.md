@@ -386,7 +386,7 @@ You now have:
 
 ### Start Here
 
-1. Read: [AUTOMATED-IMPORT-SYSTEM-SUMMARY.md](AUTOMATED-IMPORT-SYSTEM-SUMMARY.md)
+1. Read: [AUTOMATED-IMPORT-SYSTEM-SUMMARY.md](../architecture/system-overview.md)
 2. Choose: Test first or deploy now (see "Next Steps" above)
 3. Run: Single command to start import
 4. Review: Final report with quality metrics
@@ -394,11 +394,11 @@ You now have:
 
 ### Questions?
 
-See [INDEX-DOCUMENTATION.md](INDEX-DOCUMENTATION.md) for complete documentation roadmap
+See [INDEX-DOCUMENTATION.md](../index.md) for complete documentation roadmap
 
 ### Need Help?
 
-See [IMPORT-PIPELINE-SETUP.md](IMPORT-PIPELINE-SETUP.md) Troubleshooting section
+See [IMPORT-PIPELINE-SETUP.md](../guides/setup-guide.md) Troubleshooting section
 
 ---
 

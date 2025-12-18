@@ -701,6 +701,6 @@ echo "=== Done ==="
 
 **ROI**: Reusable for any future Python projects + industry-standard practices + ready for sharing/extension
 
-**Questions?** Refer back to [SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md) for detailed explanations.
+**Questions?** Refer back to [SECURITY-TESTING-INFRASTRUCTURE.md](../planning/security-infrastructure.md) for detailed explanations.
 
 Start with Day 1 now! 🚀

@@ -24,7 +24,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 
 **Before sharing as FOSS or creating extensions, read these:**
 
-**[SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md)** ← START HERE
+**[SECURITY-TESTING-INFRASTRUCTURE.md](planning/security-infrastructure.md)** ← START HERE
 - Complete 7-phase implementation plan
 - SAST/DAST tools explained
 - Security best practices
@@ -34,7 +34,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 - **Time: 2-3 weeks to full implementation**
 - **Difficulty: Medium (mostly setup)**
 
-**[SECURITY-TESTING-QUICKSTART.md](SECURITY-TESTING-QUICKSTART.md)**
+**[SECURITY-TESTING-QUICKSTART.md](guides/security-quickstart.md)**
 - Week-by-week implementation guide
 - Day-by-day tasks with exact commands
 - Automation scripts
@@ -54,14 +54,14 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 ---
 
 ### START HERE: BATCH IMPORT SYSTEM (15 min)
-1. **[AUTOMATED-IMPORT-SYSTEM-SUMMARY.md](AUTOMATED-IMPORT-SYSTEM-SUMMARY.md)**
+1. **[AUTOMATED-IMPORT-SYSTEM-SUMMARY.md](architecture/system-overview.md)**
    - Complete overview of what was built
    - Quick start instructions
    - Reusability guide
    - **Read this first**
 
 ### UNDERSTAND THE VISION (30 min)
-2. **[THREE-LAYER-LOGSEQ-ARCHITECTURE.md](THREE-LAYER-LOGSEQ-ARCHITECTURE.md)**
+2. **[THREE-LAYER-LOGSEQ-ARCHITECTURE.md](architecture/three-layer-architecture.md)**
    - Complete architectural specification
    - All three layers explained with examples
    - Queries for meta-knowledge extraction
@@ -76,14 +76,14 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - **Read if**: You're new to this project
 
 ### DETAILED SPECIFICATIONS (1 hour)
-4. **[BATCH-IMPORT-TASK-SPECIFICATION.md](BATCH-IMPORT-TASK-SPECIFICATION.md)**
+4. **[BATCH-IMPORT-TASK-SPECIFICATION.md](planning/batch-import-spec.md)**
    - Complete breakdown of import pipeline
    - All 5 stages with all tasks
    - Success criteria for each stage
    - Configuration requirements
    - **Read if**: You need technical details
 
-5. **[LLM-AGENT-TASK-LIST.md](LLM-AGENT-TASK-LIST.md)**
+5. **[LLM-AGENT-TASK-LIST.md](planning/agent-tasks.md)**
    - Autonomous task execution guide
    - For LLM agents to follow
    - 8 main tasks with checkpoints
@@ -91,7 +91,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - **Read if**: You want an agent to run this
 
 ### PRACTICAL GUIDES (45 min)
-6. **[IMPORT-PIPELINE-SETUP.md](IMPORT-PIPELINE-SETUP.md)**
+6. **[IMPORT-PIPELINE-SETUP.md](guides/setup-guide.md)**
    - Complete setup instructions
    - Directory structure
    - Quick start (15 min)
@@ -363,8 +363,8 @@ Edit `config.json` validation section
 
 | Document | Focus | Time |
 |----------|-------|------|
-| **[SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md)** | Complete plan for SAST, DAST, CI/CD, best practices | 2-3 weeks |
-| **[SECURITY-TESTING-QUICKSTART.md](SECURITY-TESTING-QUICKSTART.md)** | Week-by-week actionable guide with exact commands | Reference |
+| **[SECURITY-TESTING-INFRASTRUCTURE.md](planning/security-infrastructure.md)** | Complete plan for SAST, DAST, CI/CD, best practices | 2-3 weeks |
+| **[SECURITY-TESTING-QUICKSTART.md](guides/security-quickstart.md)** | Week-by-week actionable guide with exact commands | Reference |
 | **[INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md)** | Add security/testing to existing code (zero breaking changes) | 3.5 hours |
 
 **What you'll get**:
