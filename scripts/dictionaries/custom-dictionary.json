@@ -1,0 +1,34 @@
+{
+  "technical_terms": [
+    "Lighthouse Labs",
+    "VirtualBox",
+    "Cybersecurity",
+    "Network Security",
+    "Firewalls",
+    "Encryption"
+  ],
+  "course_terms": [
+    "IT Essentials",
+    "Networking Basics",
+    "Security Fundamentals",
+    "System Administration",
+    "Cloud Basics"
+  ],
+  "technical_acronyms": {
+    "TCP": "Transmission Control Protocol",
+    "IP": "Internet Protocol",
+    "DNS": "Domain Name System",
+    "DHCP": "Dynamic Host Configuration Protocol",
+    "SSH": "Secure Shell",
+    "VPN": "Virtual Private Network",
+    "SSL": "Secure Sockets Layer",
+    "TLS": "Transport Layer Security",
+    "API": "Application Programming Interface",
+    "REST": "Representational State Transfer",
+    "SQL": "Structured Query Language",
+    "JSON": "JavaScript Object Notation",
+    "AWS": "Amazon Web Services",
+    "VM": "Virtual Machine",
+    "MFA": "Multi-Factor Authentication"
+  }
+}

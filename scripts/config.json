@@ -1,0 +1,45 @@
+{
+  "domain_mappings": {
+    "lighthouse_labs": "tag-mappings/lighthouse-labs-domain-mapping.csv"
+  },
+  "custom_dictionary": "dictionaries/custom-dictionary.json",
+  "technical_terms_db": "dictionaries/technical-terms.json",
+  "tag_schema": "schemas/tag-schema.json",
+  "typo_patterns": "patterns/typo-patterns.json",
+  "projects_list": "metadata/projects-list.json",
+  "goals_list": "metadata/goals-list.json",
+  "graph_structure": "metadata/graph-structure-map.json",
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": "import-orchestration.log"
+  },
+  "performance": {
+    "batch_size": 50,
+    "max_workers": 4,
+    "timeout_seconds": 300
+  },
+  "validation": {
+    "max_file_size_mb": 5,
+    "required_frontmatter_fields": [
+      "source",
+      "import-batch",
+      "import-date",
+      "status",
+      "created-chronological",
+      "hierarchy",
+      "hierarchy-full"
+    ],
+    "min_tags_per_file": 2,
+    "max_tags_per_file": 15,
+    "valid_proficiency_levels": [
+      "novice",
+      "beginner",
+      "intermediate",
+      "competent",
+      "expert",
+      "gap",
+      "strength"
+    ]
+  }
+}

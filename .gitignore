@@ -1,0 +1,32 @@
+# --- System & Environment ---
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+
+# --- Security ---
+.env
+.secrets
+secrets.json
+config_private.json
+
+# --- Output/Temp ---
+output/
+temp/
+tmp/
+*_report.md
+*_report.txt
+*.log
+*.csv
+
+# --- User Data (Just in case) ---
+journals/
+whiteboards/
+assets/

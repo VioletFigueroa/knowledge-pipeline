@@ -1,0 +1,206 @@
+{
+  "dimensions": {
+    "domain": {
+      "description": "Knowledge domain or subject area",
+      "format": "#domain/{primary}/{secondary}/{tertiary}",
+      "examples": [
+        "#domain/cybersecurity",
+        "#domain/cybersecurity/network-security",
+        "#domain/cybersecurity/network-security/firewalls"
+      ],
+      "required": true,
+      "multiple": false
+    },
+    "activity": {
+      "description": "Type of activity or engagement",
+      "format": "#activity/{type}::{level}",
+      "valid_types": [
+        "learn",
+        "execute",
+        "reference",
+        "project",
+        "review",
+        "practice",
+        "teach"
+      ],
+      "valid_levels": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "hands-on",
+        "theoretical",
+        "both"
+      ],
+      "examples": [
+        "#activity/learn::beginner",
+        "#activity/execute::hands-on",
+        "#activity/practice::both"
+      ],
+      "required": true,
+      "multiple": true
+    },
+    "proficiency": {
+      "description": "Proficiency level for specific topic",
+      "format": "#proficiency/{topic-name}::{level}",
+      "valid_levels": [
+        "novice",
+        "beginner",
+        "intermediate",
+        "competent",
+        "expert",
+        "gap",
+        "strength"
+      ],
+      "examples": [
+        "#proficiency/firewalls::beginner",
+        "#proficiency/network-protocols::intermediate",
+        "#proficiency/active-directory::gap"
+      ],
+      "required": true,
+      "multiple": false,
+      "note": "One per file. User updates as they progress."
+    },
+    "project": {
+      "description": "Related project or application",
+      "format": "#project/{project-name}",
+      "examples": [
+        "#project/homelab-network",
+        "#project/active-directory-lab",
+        "#project/security-audit"
+      ],
+      "required": false,
+      "multiple": true
+    },
+    "goal": {
+      "description": "Career goal or learning objective",
+      "format": "#goal/{goal-type}/{goal-name}",
+      "valid_types": [
+        "short-term",
+        "long-term",
+        "career",
+        "certification"
+      ],
+      "examples": [
+        "#goal/short-term/security-plus-exam",
+        "#goal/long-term/security-analyst-role",
+        "#goal/certification/cissp"
+      ],
+      "required": false,
+      "multiple": true
+    },
+    "connection": {
+      "description": "Relationship to other knowledge",
+      "format": "#connection-type/{related-topic}",
+      "valid_types": [
+        "prerequisite-for",
+        "enables",
+        "connects-to",
+        "conflicts-with",
+        "extends"
+      ],
+      "examples": [
+        "#prerequisite-for/firewalls",
+        "#enables/network-security",
+        "#connects-to/encryption"
+      ],
+      "required": false,
+      "multiple": true,
+      "note": "Layer 3 - populated during review"
+    },
+    "readiness": {
+      "description": "Readiness for specific role or certification",
+      "format": "#readiness/{role}::{status}",
+      "valid_statuses": [
+        "ready",
+        "developing",
+        "gap",
+        "strength"
+      ],
+      "examples": [
+        "#readiness/security-analyst::ready",
+        "#readiness/network-admin::developing",
+        "#readiness/penetration-tester::gap"
+      ],
+      "required": false,
+      "multiple": true
+    },
+    "source": {
+      "description": "Origin of the note",
+      "format": "#source/{source-type}",
+      "valid_types": [
+        "lighthouse-labs",
+        "perplexity",
+        "vs-code",
+        "journal",
+        "research",
+        "course",
+        "book",
+        "documentation"
+      ],
+      "examples": [
+        "#source/lighthouse-labs",
+        "#source/perplexity",
+        "#source/documentation"
+      ],
+      "required": true,
+      "multiple": false,
+      "note": "Always exactly one"
+    },
+    "quality": {
+      "description": "Quality or verification status",
+      "format": "#quality/{status}",
+      "valid_statuses": [
+        "verified",
+        "unverified",
+        "draft",
+        "incomplete",
+        "experimental"
+      ],
+      "examples": [
+        "#quality/verified",
+        "#quality/draft"
+      ],
+      "required": false,
+      "multiple": false
+    }
+  },
+  "tag_format_rules": {
+    "lowercase": "All tags must be lowercase",
+    "no_spaces": "Use hyphens instead of spaces in multi-word tags",
+    "hierarchy": "Use forward slashes for hierarchical structure",
+    "levels": "Use :: for proficiency/activity levels",
+    "no_duplicates": "No duplicate tags in same file",
+    "validation": "All tags must match valid schema"
+  },
+  "examples_by_note_type": {
+    "learning_material": [
+      "#domain/cybersecurity/network-security",
+      "#activity/learn::intermediate",
+      "#proficiency/firewalls::beginner",
+      "#source/lighthouse-labs",
+      "#quality/verified"
+    ],
+    "lab_exercise": [
+      "#domain/virtualization",
+      "#activity/execute::hands-on",
+      "#proficiency/virtualbox-setup::intermediate",
+      "#project/homelab-network",
+      "#source/lighthouse-labs"
+    ],
+    "reference_material": [
+      "#domain/cybersecurity/encryption",
+      "#activity/reference",
+      "#proficiency/encryption-concepts::gap",
+      "#source/documentation",
+      "#readiness/security-analyst::developing"
+    ]
+  },
+  "tagging_workflow": {
+    "step_1": "Auto-tags applied at import: source, proficiency::beginner, domain (inferred)",
+    "step_2": "Activity tags added during Stage 3 processing",
+    "step_3": "User updates proficiency tags as they learn",
+    "step_4": "User adds project/goal tags when applicable",
+    "step_5": "User populates connection tags during Layer 3 review",
+    "step_6": "User adds readiness tags when ready for interviews"
+  }
+}
