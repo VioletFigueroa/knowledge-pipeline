@@ -21,6 +21,33 @@ This project matters to me because:
 
 ---
 
+## Development Approach
+
+This project represents a **convenience automation layer** within a larger knowledge management workflow that is primarily manual.
+
+### LLM Usage (~55% of scripts)
+- **Script Generation**: Python utility scripts for file processing, markdown parsing, and tagging automation
+- **Documentation**: Technical documentation, README structure, and planning specifications
+- **Testing Frameworks**: Pytest scaffolding, test case generation, and quality assurance templates
+- **Pipeline Specifications**: Data processing stage definitions and workflow documentation
+
+### Human-Led Components (~45% of scripts + 100% of knowledge work)
+- **System Architecture**: 5-stage pipeline design, data flow strategy, and integration approach
+- **Knowledge Management Strategy**: Tagging taxonomy, proficiency levels, career goal connections (entirely manual)
+- **Content Curation**: All note-taking, learning synthesis, and knowledge organization (entirely manual)
+- **Tool Integration**: Logseq configuration, file organization system, and workflow optimization
+- **Quality Control**: Validation logic, error handling strategy, and data integrity checks
+
+### Project Context
+**Important**: While the automation scripts use significant LLM assistance, they represent only a **convenience layer** within my larger personal knowledge management system. The core intellectual work—learning, synthesizing information, creating connections, and building knowledge—is entirely manual and represents the primary value of this project.
+
+The scripts automate tedious file operations (moving, renaming, tagging) but don't replace the critical thinking, learning, and knowledge synthesis that I perform daily.
+
+### Development Philosophy
+I use LLMs to accelerate utility script development for repetitive tasks (file I/O, parsing, formatting) while maintaining full control over knowledge architecture, learning strategies, and content organization. The automation serves my manual learning process rather than replacing it.
+
+---
+
 ## 🛠️ Under the Hood (The Tech)
 For the technically inclined, this isn't just a script—it's a robust engineering project featuring:
 
@@ -44,7 +71,7 @@ It demonstrates:
 ---
 
 ## 📊 The Impact
-*   **Manual Effort Saved:** ~40 hours per import batch.
+*   **Manual Effort Saved:** ~40 hours per import batch (file operations only).
 *   **Processing Time:** Reduced from weeks of manual sorting to **3 minutes** of automated processing.
 *   **Error Rate:** Less than 1% (compared to human error).
 
