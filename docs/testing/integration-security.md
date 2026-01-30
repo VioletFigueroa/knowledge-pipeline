@@ -9,6 +9,7 @@
 ## CURRENT STATE ANALYSIS
 
 ### Existing Files (from batch import system)
+
 ```
 /home/violetf/Games2/Nextcloud/Documents/Notes/
 ├── src/
@@ -25,6 +26,7 @@
 ```
 
 ### Issues This Creates
+
 - ⚠️ No version control (git)
 - ⚠️ No automated testing
 - ⚠️ No security scanning
@@ -108,6 +110,7 @@ batch-import-system/                    # 📁 New project root
 ### New Files to Create (Minimal Set)
 
 #### Configuration Files (3 files)
+
 ```
 1. .gitignore               - Git ignore patterns
 2. requirements.txt         - Python dependencies
@@ -120,6 +123,7 @@ batch-import-system/                    # 📁 New project root
 ```
 
 #### GitHub Actions (2 files)
+
 ```
 9. .github/workflows/tests.yml      - Test pipeline
 10. .github/workflows/security.yml   - Security scanning
@@ -127,6 +131,7 @@ batch-import-system/                    # 📁 New project root
 ```
 
 #### Tests (8 files)
+
 ```
 12. tests/__init__.py
 13. tests/conftest.py                - Pytest fixtures (~80 lines)
@@ -140,11 +145,13 @@ batch-import-system/                    # 📁 New project root
 ```
 
 #### Package Setup (2 files)
+
 ```
 21. src/__init__.py                  - Package marker with version
 ```
 
 #### Documentation Updates (3 files)
+
 ```
 22. docs/ARCHITECTURE.md             - System architecture
 23. docs/API.md                      - API documentation  
@@ -184,6 +191,7 @@ mv scripts/schemas src/ 2>/dev/null || true
 ### Step 2: Add Configuration Files (30 min)
 
 **Create `.gitignore`:**
+
 ```
 __pycache__/
 *.pyc
@@ -205,6 +213,7 @@ build/
 ```
 
 **Create `requirements.txt`:**
+
 ```
 pyyaml==6.0.1
 pandas==2.1.4
@@ -214,6 +223,7 @@ requests==2.31.0
 ```
 
 **Create `requirements-dev.txt`:**
+
 ```
 pytest==7.4.3
 pytest-cov==4.1.0
@@ -228,6 +238,7 @@ tox==4.11.3
 ```
 
 **Create `pyproject.toml`:**
+
 ```toml
 [build-system]
 requires = ["setuptools>=45", "wheel"]
@@ -248,6 +259,7 @@ warn_return_any = true
 ```
 
 **Create `pytest.ini`:**
+
 ```ini
 [pytest]
 testpaths = tests
@@ -265,6 +277,7 @@ addopts =
 ### Step 3: Add Package Setup (20 min)
 
 **Create `setup.py`:**
+
 ```python
 from setuptools import setup, find_packages
 
@@ -290,6 +303,7 @@ setup(
 ```
 
 **Create `src/__init__.py`:**
+
 ```python
 """Batch import system for Logseq with 5-stage processing."""
 __version__ = "0.1.0-alpha"
@@ -298,6 +312,7 @@ __version__ = "0.1.0-alpha"
 ### Step 4: Add GitHub Actions (20 min)
 
 **Create `.github/workflows/tests.yml`:**
+
 ```yaml
 name: Tests & Quality
 
@@ -331,6 +346,7 @@ jobs:
 ### Step 5: Create Minimal Test Suite (1 hour)
 
 **Create `tests/conftest.py`:**
+
 ```python
 import pytest
 from pathlib import Path
@@ -360,6 +376,7 @@ def sample_lighthouse_file(temp_dir):
 ```
 
 **Create `tests/test_stage_1.py`:**
+
 ```python
 import pytest
 from pathlib import Path
@@ -397,48 +414,49 @@ class TestIdentifyFiles:
 ### Step 6: Add Makefile (15 min)
 
 **Create `Makefile`:**
+
 ```makefile
 .PHONY: help install test coverage lint format security clean all
 
 help:
-	@echo "Available commands:"
-	@echo "  make install     - Install dependencies"
-	@echo "  make test        - Run tests"
-	@echo "  make coverage    - Tests with coverage"
-	@echo "  make lint        - Run all linters"
-	@echo "  make format      - Format code with Black"
-	@echo "  make security    - Security scan"
-	@echo "  make clean       - Clean build artifacts"
-	@echo "  make all         - Full check (install, lint, test, coverage)"
+ @echo "Available commands:"
+ @echo "  make install     - Install dependencies"
+ @echo "  make test        - Run tests"
+ @echo "  make coverage    - Tests with coverage"
+ @echo "  make lint        - Run all linters"
+ @echo "  make format      - Format code with Black"
+ @echo "  make security    - Security scan"
+ @echo "  make clean       - Clean build artifacts"
+ @echo "  make all         - Full check (install, lint, test, coverage)"
 
 install:
-	pip install -r requirements.txt -r requirements-dev.txt
+ pip install -r requirements.txt -r requirements-dev.txt
 
 test:
-	pytest tests/ -v
+ pytest tests/ -v
 
 coverage:
-	pytest tests/ --cov=src --cov-report=html --cov-report=term
-	@echo "View report: open htmlcov/index.html"
+ pytest tests/ --cov=src --cov-report=html --cov-report=term
+ @echo "View report: open htmlcov/index.html"
 
 lint:
-	black --check src tests
-	flake8 src tests --max-line-length=100
-	pylint src --exit-zero
-	mypy src --ignore-missing-imports
+ black --check src tests
+ flake8 src tests --max-line-length=100
+ pylint src --exit-zero
+ mypy src --ignore-missing-imports
 
 format:
-	black src tests
-	isort src tests
+ black src tests
+ isort src tests
 
 security:
-	bandit -r src
-	safety check
+ bandit -r src
+ safety check
 
 clean:
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
-	rm -rf .pytest_cache .coverage htmlcov
+ find . -type d -name __pycache__ -exec rm -rf {} +
+ find . -type f -name "*.pyc" -delete
+ rm -rf .pytest_cache .coverage htmlcov
 
 all: install lint test coverage security
 ```
@@ -483,11 +501,12 @@ open htmlcov/index.html
 
 ## MODIFICATIONS TO EXISTING CODE
 
-### No Breaking Changes Required!
+### No Breaking Changes Required
 
 The existing Python modules (`stage_*.py`, `orchestrate_import.py`) need **no content changes** for testing/security. Only:
 
 1. **Add type hints** (optional but recommended):
+
 ```python
 # Before
 def identify_files(source_dir):
@@ -501,7 +520,8 @@ def identify_files(source_dir: Path) -> List[Path]:
     # ... existing code unchanged
 ```
 
-2. **Add docstrings** (where missing):
+1. **Add docstrings** (where missing):
+
 ```python
 def identify_files(source_dir: Path) -> List[Path]:
     """Scan directory and return list of markdown files.
@@ -518,7 +538,8 @@ def identify_files(source_dir: Path) -> List[Path]:
     # ... existing code
 ```
 
-3. **Add `__init__.py` to src/**:
+1. **Add `__init__.py` to src/**:
+
 ```python
 # src/__init__.py
 """Batch import system for Logseq."""
@@ -547,6 +568,7 @@ __version__ = "0.1.0-alpha"
 ## PRIORITY IMPLEMENTATION ORDER
 
 ### Must Have (Week 1 - 3.5 hours)
+
 - ✅ Directory restructuring
 - ✅ Git initialization
 - ✅ requirements.txt
@@ -554,12 +576,14 @@ __version__ = "0.1.0-alpha"
 - ✅ Basic tests (50%+ coverage)
 
 ### Should Have (Week 2 - 5 hours)
+
 - ✅ Full test suite (85%+ coverage)
 - ✅ Makefile
 - ✅ Security scanning in CI
 - ✅ Type checking setup
 
 ### Nice to Have (After)
+
 - ✅ Documentation generation
 - ✅ Performance testing
 - ✅ Advanced CI/CD
@@ -570,18 +594,21 @@ __version__ = "0.1.0-alpha"
 ## COMPATIBILITY CHECK
 
 ✅ **Zero Breaking Changes**
+
 - Existing code remains unchanged
 - Can run old orchestrate_import.py immediately
 - No existing data affected
 - Can add tests incrementally
 
 ✅ **Backwards Compatible**
+
 - Old command-line interface still works
 - Existing CSV outputs unchanged
 - Configuration loading unchanged
 - All stage modules work as-is
 
 ✅ **Additive Only**
+
 - New files don't interfere
 - New directories separate from code
 - Can keep .gitignore for old structure
@@ -680,4 +707,3 @@ After completing integration:
 **Ongoing Maintenance**: ~5 hours/month
 
 **Start with Step 1 today!** 🚀
-

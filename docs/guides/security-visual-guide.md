@@ -245,6 +245,7 @@ Quick Start    Infrastructure   Understand
 ## TOOLS CHEAT SHEET
 
 ### Most Important (Do First)
+
 ```bash
 make test              # Run all tests
 make coverage          # View coverage report
@@ -254,6 +255,7 @@ make format            # Auto-format code
 ```
 
 ### During Development
+
 ```bash
 black src/             # Format one file/dir
 flake8 src/            # Check PEP8
@@ -262,6 +264,7 @@ pytest -k "test_stage_1"  # Run specific test
 ```
 
 ### In CI/CD (Automatic)
+
 ```
 ✅ Every commit runs:
   - black --check

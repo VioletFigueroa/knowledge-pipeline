@@ -17,6 +17,7 @@
 ## PRE-EXECUTION CHECKLIST
 
 ### ✅ Verify Environment
+
 - [ ] Python 3.8+ installed: `python3 --version`
 - [ ] Required packages: `pip install pandas pyyaml spellchecker`
 - [ ] Scripts directory exists with all 5 stage modules
@@ -24,6 +25,7 @@
 - [ ] Reference files present in `scripts/dictionaries/`, `scripts/schemas/`
 
 ### ✅ Prepare Source Files
+
 - [ ] Source directory identified
 - [ ] Source type verified: `lighthouse_labs | perplexity | vs_code_notes | journals | other`
 - [ ] Batch ID created: format `{source}-batch-{number}` (e.g., `lighthouse-labs-batch-1`)
@@ -31,6 +33,7 @@
 - [ ] Total file count known and logged
 
 ### ✅ Documentation Ready
+
 - [ ] `BATCH-IMPORT-TASK-SPECIFICATION.md` available for reference
 - [ ] `IMPORT-PIPELINE-SETUP.md` available for troubleshooting
 - [ ] `THREE-LAYER-LOGSEQ-ARCHITECTURE.md` available for understanding structure
@@ -74,12 +77,14 @@ success = orchestrator.run_stage_1_qa()
 ```
 
 **This Stage Does**:
+
 - ✅ Task 1.1: Identifies all .md files and creates manifest
 - ✅ Task 1.2: Lints markdown for heading hierarchy, list consistency, code blocks, trailing spaces
 - ✅ Task 1.3: Checks spelling/grammar, flags anomalies
 - ✅ Task 1.4: Extracts existing metadata (YAML, properties, inline)
 
 **Output Files Generated**:
+
 - `import-manifest.csv` - All files with priority
 - `linting-errors.csv` - Auto-fixable linting issues (fixed)
 - `linting-review-required.csv` - Complex issues needing manual review
@@ -87,6 +92,7 @@ success = orchestrator.run_stage_1_qa()
 - `existing-metadata.csv` - Extracted metadata from files
 
 **Checkpoint**: Check success flag
+
 ```python
 if not success:
     logger.error("Stage 1 failed. Review:")
@@ -96,6 +102,7 @@ if not success:
 ```
 
 **Allowed To Continue If**:
+
 - < 5% files in `linting-review-required.csv`
 - No critical errors in log
 - Manifest contains expected file count
@@ -113,16 +120,19 @@ success = orchestrator.run_stage_2_layer1()
 ```
 
 **This Stage Does**:
+
 - ✅ Task 2.1: Parses file paths to extract hierarchy (course/week/topic)
 - ✅ Task 2.2: Builds YAML frontmatter with source, hierarchy, dates, import info
 - ✅ Task 2.3: Validates frontmatter structure and date formats
 
 **Output Files Generated**:
+
 - `hierarchy-mapping.csv` - Extracted hierarchy for each file
 - `layer1-applied.csv` - Hierarchy mapping by file
 - `layer1-validation-results.csv` - Validation pass/fail for each file
 
 **Example Layer 1 Frontmatter Created**:
+
 ```yaml
 ---
 source: lighthouse-labs
@@ -141,6 +151,7 @@ status: imported
 ```
 
 **Checkpoint**: Check success and validation results
+
 ```python
 if not success:
     logger.error("Stage 2 failed")
@@ -153,6 +164,7 @@ if validation.get('files_failed', 0) > 0:
 ```
 
 **Allowed To Continue If**:
+
 - 100% of files have valid YAML frontmatter
 - All required Layer 1 fields present
 - Dates are valid ISO format and chronological
@@ -171,11 +183,13 @@ success = orchestrator.run_stage_3_layer2()
 ```
 
 **This Stage Does**:
+
 - ✅ Task 3.1: Extracts keywords from content (title, headings, technical terms)
 - ✅ Task 3.2: Maps keywords to multi-dimensional tags (8 dimensions)
 - ✅ Task 3.3: Validates tags and applies to files
 
 **Tags Applied**:
+
 1. **Domain**: `#domain/cybersecurity/network-security` (inferred from content)
 2. **Activity**: `#activity/learn::beginner` (inferred from content type)
 3. **Proficiency**: `#proficiency/topic::beginner` (default on import, user updates)
@@ -186,11 +200,13 @@ success = orchestrator.run_stage_3_layer2()
 8. **Source**: `#source/lighthouse-labs` (from source type)
 
 **Output Files Generated**:
+
 - `content-keywords.csv` - Extracted keywords per file
 - `tags-mapped.csv` - All tags mapped per file
 - `tags-validation-results.csv` - Validation pass/fail
 
 **Example Tags Section Created**:
+
 ```markdown
 ## Tags
 
@@ -201,6 +217,7 @@ success = orchestrator.run_stage_3_layer2()
 ```
 
 **Checkpoint**: Check success and tag statistics
+
 ```python
 if not success:
     logger.error("Stage 3 failed")
@@ -214,6 +231,7 @@ logger.info(f"Tag pass rate: {pass_rate * 100:.1f}%")
 ```
 
 **Allowed To Continue If**:
+
 - 95%+ files have valid tags
 - All source tags are present
 - No anomalies in tag format
@@ -231,11 +249,13 @@ success = orchestrator.run_stage_4_layer3()
 ```
 
 **This Stage Does**:
+
 - ✅ Task 4.1: Analyzes content for connection keywords (prerequisite, enables, etc.)
 - ✅ Task 4.2: Creates placeholder sections for user to populate during review
 - ✅ Task 4.3: Validates placeholder structure
 
 **Placeholders Created**:
+
 ```markdown
 ## Prerequisites
 - [ ] [[]]  # User will populate
@@ -257,10 +277,12 @@ Connection candidates:
 ```
 
 **Output Files Generated**:
+
 - `layer3-candidates.csv` - Suggested connections (guidance only)
 - `layer3-structure-validation.csv` - Placeholder structure validation
 
 **Checkpoint**: Check success
+
 ```python
 if not success:
     logger.error("Stage 4 failed - placeholders not created")
@@ -270,6 +292,7 @@ logger.info("✅ Layer 3 placeholders created - ready for user population")
 ```
 
 **Allowed To Continue If**:
+
 - 100% files have placeholder sections
 - All required sections present
 - Structure is valid for user to populate
@@ -287,12 +310,14 @@ success = orchestrator.run_stage_5_validation()
 ```
 
 **This Stage Does**:
+
 - ✅ Task 5.1: Full file integrity validation (frontmatter, tags, layers, UTF-8, size)
 - ✅ Task 5.2: Cross-file consistency check (duplicates, batch IDs, dates, sources)
 - ✅ Task 5.3: Tag coverage analysis (statistics, anomalies, quality)
 - ✅ Task 5.4: Generates comprehensive import report
 
 **Validation Checks**:
+
 - ✅ All files readable and valid UTF-8
 - ✅ Layer 1 frontmatter present and valid YAML
 - ✅ Layer 2 tags all in valid format
@@ -303,6 +328,7 @@ success = orchestrator.run_stage_5_validation()
 - ✅ No files < 2 tags (should have at least source + proficiency)
 
 **Output Files Generated**:
+
 - `integrity-validation.csv` - File integrity results
 - `consistency-validation.csv` - Batch-level consistency
 - `tag-coverage-analysis.csv` - Tag statistics and distribution
@@ -310,6 +336,7 @@ success = orchestrator.run_stage_5_validation()
 - `import-batch-report.md` - **Comprehensive deployment report**
 
 **Report Shows**:
+
 ```
 Status: ✅ READY FOR DEPLOYMENT
 - Files processed: 600
@@ -319,6 +346,7 @@ Status: ✅ READY FOR DEPLOYMENT
 ```
 
 **Checkpoint**: Read deployment status from report
+
 ```python
 # Read report
 with open("output/stage_5_validation/import-batch-report.md") as f:
@@ -337,6 +365,7 @@ else:
 ```
 
 **Allowed To Continue If**:
+
 - Status is "✅ READY FOR DEPLOYMENT"
 - Integrity check: < 1% failures
 - Consistency check: 100% pass
@@ -354,9 +383,11 @@ orchestrator.finalize()
 ```
 
 **This Creates**:
+
 - `processed_batch_files/` directory with all 600 processed, validated files ready for deployment
 
 **Verification**:
+
 ```bash
 ls -la processed_batch_files/ | wc -l  # Should match source file count
 head -20 processed_batch_files/sample.md  # Verify Layer 1 + Layer 2 applied
@@ -370,6 +401,7 @@ head -20 processed_batch_files/sample.md  # Verify Layer 1 + Layer 2 applied
 **Autonomous**: Yes (provides handoff summary)
 
 **Create Summary Report**:
+
 ```
 BATCH IMPORT COMPLETE: {batch_id}
 
@@ -403,6 +435,7 @@ Processed Files Location: {processed_files_path}
 ### If Stage Fails
 
 **For ANY stage failure**:
+
 1. Check `import-orchestration.log` for detailed error
 2. Identify which task within stage failed
 3. Review corresponding CSV error files
@@ -497,6 +530,7 @@ if __name__ == '__main__':
 ```
 
 **Usage**:
+
 ```bash
 python3 autonomous_import.py /path/to/source lighthouse_labs batch-1 /path/to/output
 ```
@@ -533,4 +567,3 @@ After completion, provide human with:
 **Status**: ✅ Ready for Autonomous Execution
 
 This task list enables any LLM agent to independently execute complete batch imports with quality assurance and clear checkpoints for human review.
-

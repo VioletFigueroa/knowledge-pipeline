@@ -15,6 +15,7 @@
 **Why**: Version control is foundational for everything else; enables rollback, tracking, collaboration.
 
 **Tasks**:
+
 - [ ] Initialize git repository: `git init`
 - [ ] Create `.gitignore` file:
   - `__pycache__/`, `*.pyc`, `*.pyo`
@@ -25,12 +26,13 @@
   - IDE files: `.vscode/`, `.idea/`
 - [ ] Create `CHANGELOG.md` with version tracking
 - [ ] Create `.git-commit-message-template` for consistent commits
-- [ ] Set git config: 
+- [ ] Set git config:
   - `git config user.name "Your Name"`
   - `git config user.email "your@email.com"`
 - [ ] Make initial commit: "Initial: Batch import system with 5 stages"
 
 **Validation**:
+
 ```bash
 git log --oneline  # Shows first commit
 git status         # Clean working directory
@@ -45,7 +47,9 @@ git status         # Clean working directory
 **Why**: Proper structure enables testing, distribution, and maintenance.
 
 **Tasks**:
+
 - [ ] Create standardized directory structure:
+
 ```
 batch-import-system/
 ├── .github/
@@ -101,6 +105,7 @@ batch-import-system/
 - [ ] Create `docs/` directory with template files
 
 **Validation**:
+
 ```bash
 ls -la src/        # All modules present
 ls -la tests/      # Test directory exists
@@ -115,7 +120,9 @@ ls -la tests/      # Test directory exists
 **Why**: Reproducible, isolated environment prevents dependency hell.
 
 **Tasks**:
+
 - [ ] Create `requirements.txt` with pinned versions:
+
 ```
 pyyaml==6.0.1
 pandas==2.1.4
@@ -125,6 +132,7 @@ requests==2.31.0
 ```
 
 - [ ] Create `requirements-dev.txt` for development:
+
 ```
 pytest==7.4.3
 pytest-cov==4.1.0
@@ -141,6 +149,7 @@ sphinx-rtd-theme==2.0.0
 ```
 
 - [ ] Create virtual environment:
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -149,6 +158,7 @@ pip install -r requirements-dev.txt
 ```
 
 - [ ] Create `.env.example`:
+
 ```
 LOG_LEVEL=INFO
 BATCH_SIZE=50
@@ -159,6 +169,7 @@ DEBUG=False
 - [ ] Test imports: `python -c "import yaml, pandas, pyspellchecker"`
 
 **Validation**:
+
 ```bash
 pip list | grep -E "pytest|pylint|bandit"  # All tools installed
 which pytest                               # Tools in PATH
@@ -179,7 +190,9 @@ which pytest                               # Tools in PATH
 **Tasks**:
 
 #### Black (Code Formatting)
+
 - [ ] Create `black` configuration in `pyproject.toml`:
+
 ```toml
 [tool.black]
 line-length = 100
@@ -198,7 +211,9 @@ extend-exclude = '''
 - [ ] Check formatting without changes: `black --check src/`
 
 #### Flake8 (PEP8 Compliance)
+
 - [ ] Create `.flake8` config:
+
 ```ini
 [flake8]
 max-line-length = 100
@@ -213,6 +228,7 @@ per-file-ignores =
 - [ ] Fix issues: Address all warnings
 
 #### Pylint (Advanced Analysis)
+
 - [ ] Create `.pylintrc` config: `pylint --generate-rcfile > .pylintrc`
 - [ ] Customize settings:
   - Max line length: 100
@@ -222,6 +238,7 @@ per-file-ignores =
 - [ ] Aim for score: > 8.0/10
 
 **Validation**:
+
 ```bash
 black --check src/        # All files formatted
 flake8 src/ --count      # Count issues (should be 0-5)
@@ -237,7 +254,9 @@ pylint src/ --exit-zero  # Score displayed
 **Why**: Catches type errors before runtime, improves IDE support, documents intent.
 
 **Tasks**:
+
 - [ ] Create `mypy.ini`:
+
 ```ini
 [mypy]
 python_version = 3.8
@@ -253,6 +272,7 @@ warn_no_return = True
 ```
 
 - [ ] Add type annotations to key functions:
+
 ```python
 from typing import Dict, List, Optional, Tuple
 from pathlib import Path
@@ -279,6 +299,7 @@ def validate_layer1(file_path: Path) -> Tuple[bool, Optional[str]]:
 - [ ] Target: 80% type coverage
 
 **Validation**:
+
 ```bash
 mypy src/ --stats    # Shows coverage percentage
 mypy src/ --html out/ # Generates HTML report
@@ -293,12 +314,14 @@ mypy src/ --html out/ # Generates HTML report
 **Why**: Catches known vulnerabilities in dependencies before they cause issues.
 
 **Tasks**:
+
 - [ ] Install safety: `pip install safety`
 - [ ] Scan dependencies: `safety check`
 - [ ] Create GitHub issue for any HIGH/CRITICAL
 - [ ] Set up auto-update policy for dependencies
 
 - [ ] Create `.github/dependabot.yml`:
+
 ```yaml
 version: 2
 updates:
@@ -313,6 +336,7 @@ updates:
 ```
 
 **Validation**:
+
 ```bash
 safety check --json    # All dependencies safe
 ```
@@ -326,7 +350,9 @@ safety check --json    # All dependencies safe
 **Why**: Detects common security issues: hardcoded passwords, SQL injection, insecure functions.
 
 **Tasks**:
+
 - [ ] Create `.bandit` config:
+
 ```yaml
 # .bandit
 tests:
@@ -379,6 +405,7 @@ hardcoded_tmp_directory:
   - [ ] Sanitize user inputs
 
 **Example Fix**:
+
 ```python
 # ❌ BEFORE: Vulnerable
 import subprocess
@@ -390,6 +417,7 @@ output = subprocess.run(["process", file], shell=False)
 ```
 
 **Validation**:
+
 ```bash
 bandit -r src/ --json > bandit-report.json
 cat bandit-report.json | jq '.results[] | .severity'  # All MEDIUM or lower
@@ -406,7 +434,9 @@ cat bandit-report.json | jq '.results[] | .severity'  # All MEDIUM or lower
 **Why**: Automated tests catch regressions, ensure code works as designed, improve refactoring confidence.
 
 **Tasks**:
+
 - [ ] Create `pytest.ini`:
+
 ```ini
 [pytest]
 testpaths = tests
@@ -429,6 +459,7 @@ markers =
 ```
 
 - [ ] Create `tests/conftest.py`:
+
 ```python
 import pytest
 from pathlib import Path
@@ -468,6 +499,7 @@ def config():
 ```
 
 - [ ] Create test file: `tests/test_stage_1.py`
+
 ```python
 import pytest
 from src.stage_1_quality_assurance import identify_files, lint_markdown
@@ -492,6 +524,7 @@ def test_lint_markdown_detects_trailing_whitespace(temp_dir):
 ```
 
 **Validation**:
+
 ```bash
 pytest tests/ -v                    # Run all tests
 pytest tests/ --cov=src            # With coverage
@@ -509,6 +542,7 @@ pytest tests/ -k "test_identify"    # Run specific test
 **Create `tests/test_stage_*.py` files**:
 
 #### test_stage_1.py (Quality Assurance)
+
 - [ ] Test `identify_files()`:
   - Finds markdown files in directory
   - Handles nested directories
@@ -536,6 +570,7 @@ pytest tests/ -k "test_identify"    # Run specific test
   - Handles missing metadata
 
 **Example**:
+
 ```python
 @pytest.mark.unit
 class TestMarkdownLinter:
@@ -561,6 +596,7 @@ class TestMarkdownLinter:
 ```
 
 #### test_stage_2.py (Layer 1 Metadata)
+
 - [ ] Test `parse_lighthouse_path()`:
   - Extracts course, week, topic
   - Handles various path formats
@@ -578,6 +614,7 @@ class TestMarkdownLinter:
   - Validates output format
 
 #### test_stage_3.py (Layer 2 Tagging)
+
 - [ ] Test `KeywordExtractor`:
   - Extracts keywords from content
   - Filters common words
@@ -591,6 +628,7 @@ class TestMarkdownLinter:
   - Applies tags to file
 
 #### test_stage_4.py (Layer 3 Placeholders)
+
 - [ ] Test `detect_layer3_connections()`:
   - Finds prerequisite keywords
   - Finds enable keywords
@@ -602,6 +640,7 @@ class TestMarkdownLinter:
   - Handles existing sections
 
 #### test_stage_5.py (Validation)
+
 - [ ] Test `validate_file_integrity()`:
   - Checks frontmatter completeness
   - Validates tag structure
@@ -616,6 +655,7 @@ class TestMarkdownLinter:
 **Target**: 85%+ code coverage
 
 **Validation**:
+
 ```bash
 pytest tests/ --cov=src --cov-report=html
 open htmlcov/index.html    # View coverage report
@@ -695,6 +735,7 @@ class TestFullPipeline:
 ```
 
 **Validation**:
+
 ```bash
 pytest tests/test_integration.py -v -s
 pytest tests/ -m integration  # Run only integration tests
@@ -768,6 +809,7 @@ class TestPerformance:
 ```
 
 **Validation**:
+
 ```bash
 pytest tests/test_performance.py -v -s
 pytest tests/ -m slow --durations=10  # Slowest tests
@@ -872,6 +914,7 @@ date: "not-a-date"
 ```
 
 **Validation**:
+
 ```bash
 pytest tests/test_input_validation.py -v
 ```
@@ -1047,10 +1090,10 @@ All pull requests must meet these standards:
    pytest tests/ --cov=src
    bandit -r src/
    ```
-5. Update CHANGELOG.md
-6. Commit with descriptive message
-7. Push to fork
-8. Open pull request
+1. Update CHANGELOG.md
+2. Commit with descriptive message
+3. Push to fork
+4. Open pull request
 
 ## Commit Message Format
 
@@ -1070,12 +1113,14 @@ Types: feature, fix, docs, test, refactor, perf, security, ci
 ## Code Review Checklist
 
 Reviewers will verify:
+
 - [ ] Tests pass (85%+ coverage)
 - [ ] No security issues
 - [ ] Code style compliant
 - [ ] Documentation updated
 - [ ] No breaking changes (or documented)
 - [ ] Follows architecture patterns
+
 ```
 
 **Deliverable**: Professional contributing guidelines
@@ -1094,8 +1139,10 @@ Reviewers will verify:
 The batch import system consists of 5 independent stages:
 
 ```
-Files → Stage 1 (QA) → Stage 2 (L1 Metadata) → Stage 3 (L2 Tags) 
+
+Files → Stage 1 (QA) → Stage 2 (L1 Metadata) → Stage 3 (L2 Tags)
   → Stage 4 (L3 Placeholders) → Stage 5 (Validation) → Output
+
 ```
 
 ## Stage Responsibilities
@@ -1184,6 +1231,7 @@ pytest tests/ -m slow
 - [ ] Coverage > 85%
 - [ ] No flaky tests
 - [ ] Performance acceptable
+
 ```
 
 **Deliverable**: Complete testing documentation
@@ -1315,52 +1363,52 @@ jobs:
 .PHONY: help install test lint format security coverage clean docs
 
 help:
-	@echo "Available commands:"
-	@echo "  make install     - Install dependencies"
-	@echo "  make test        - Run tests"
-	@echo "  make coverage    - Run tests with coverage"
-	@echo "  make lint        - Run all linters"
-	@echo "  make format      - Format code with Black"
-	@echo "  make security    - Run security checks"
-	@echo "  make docs        - Generate documentation"
-	@echo "  make clean       - Clean build artifacts"
-	@echo "  make all         - Install, lint, test, coverage"
+ @echo "Available commands:"
+ @echo "  make install     - Install dependencies"
+ @echo "  make test        - Run tests"
+ @echo "  make coverage    - Run tests with coverage"
+ @echo "  make lint        - Run all linters"
+ @echo "  make format      - Format code with Black"
+ @echo "  make security    - Run security checks"
+ @echo "  make docs        - Generate documentation"
+ @echo "  make clean       - Clean build artifacts"
+ @echo "  make all         - Install, lint, test, coverage"
 
 install:
-	pip install -r requirements.txt
-	pip install -r requirements-dev.txt
+ pip install -r requirements.txt
+ pip install -r requirements-dev.txt
 
 test:
-	pytest tests/ -v
+ pytest tests/ -v
 
 coverage:
-	pytest tests/ --cov=src --cov-report=html --cov-report=term-missing
-	@echo "Coverage report: htmlcov/index.html"
+ pytest tests/ --cov=src --cov-report=html --cov-report=term-missing
+ @echo "Coverage report: htmlcov/index.html"
 
 lint:
-	black --check src tests
-	flake8 src tests
-	pylint src tests
-	mypy src
+ black --check src tests
+ flake8 src tests
+ pylint src tests
+ mypy src
 
 format:
-	black src tests
-	isort src tests
+ black src tests
+ isort src tests
 
 security:
-	bandit -r src
-	safety check
+ bandit -r src
+ safety check
 
 docs:
-	sphinx-build -b html docs/source docs/build/html
+ sphinx-build -b html docs/source docs/build/html
 
 clean:
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
-	rm -rf .pytest_cache
-	rm -rf .coverage
-	rm -rf htmlcov
-	rm -rf build dist *.egg-info
+ find . -type d -name __pycache__ -exec rm -rf {} +
+ find . -type f -name "*.pyc" -delete
+ rm -rf .pytest_cache
+ rm -rf .coverage
+ rm -rf htmlcov
+ rm -rf build dist *.egg-info
 
 all: install lint test coverage security
 ```
@@ -1505,6 +1553,7 @@ testpaths = ["tests"]
 - [ ] Update documentation
 - [ ] Announce in channels
 - [ ] Monitor for issues
+
 ```
 
 **Deliverable**: Release management process

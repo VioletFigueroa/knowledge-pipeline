@@ -68,21 +68,25 @@ Three comprehensive documents implementing your sophisticated three-layer knowle
 ### Final Structure Created
 
 **Core Navigation (4 pages)**:
+
 - `Notes-Index.md` - Master hub
 - `Complete-Notes-Reference.md` - Comprehensive reference
 - `Links-Index.md` - Original link organization
 - `links.md` - Quick access
 
 **Hub Pages (4 pages)**:
+
 - `Media-Hub.md`
 - `Technology-Hub.md`
 - `Learning-Hub.md`
 - `Personal-Hub.md`
 
 **Link Collections (26 pages)**:
+
 - 5,814+ links organized by domain (Anime, Comics, Books, Tech, Education, etc.)
 
 **Technical Categories (7 pages)**:
+
 - Linux & Unix
 - Security & Cybersecurity
 - Web Development
@@ -118,11 +122,13 @@ Three comprehensive documents implementing your sophisticated three-layer knowle
 ### Key Features of Output
 
 **Tags Applied**:
+
 - Course tags: `#course-01` through `#course-12`
 - Week tags: `#week-01` through `#week-30`
 - Topic tags: `#linux`, `#networking`, `#security`, `#lab`, `#pentest`, etc.
 
 **Properties on Each Page**:
+
 - `title::` - Page name
 - `course::` - Course number (1-12)
 - `week::` - Week number (1-30)
@@ -130,6 +136,7 @@ Three comprehensive documents implementing your sophisticated three-layer knowle
 - `tags::` - All assigned tags
 
 **Navigation Structure**:
+
 - Master Index → Course indexes → Week indexes → Content pages
 - All pages use `[[Page Name]]` Logseq link format
 
@@ -152,26 +159,32 @@ Three comprehensive documents implementing your sophisticated three-layer knowle
 ### Tag Categories Defined
 
 **Domain Tags** (Primary subject):
+
 - `domain/standards`, `domain/penetration-testing`, `domain/incident-response`
 - `domain/threat-intel`, `domain/risk-management`, `domain/policy`
 - `domain/education`, `domain/tools-frameworks`, `domain/scripting`
 
 **Activity Tags** (What you can do):
+
 - `activity/learn`, `activity/reference`, `activity/practice`
 - `activity/execute`, `activity/audit`, `activity/configure`
 
 **Tool Tags**:
+
 - `tool/metasploit`, `tool/wireshark`, `tool/nmap`, `tool/bash`, `tool/flipper-zero`, etc.
 
 **Platform/Tech Tags**:
+
 - `platform/linux`, `platform/windows`, `platform/network`, `platform/cloud`, `platform/mobile`
 
 **Source Tags**:
+
 - `source/lhl` (Lighthouse Labs)
 - `source/google-cyber` (Google Cybersecurity)
 - `source/iso-27001`, `source/nist`, `source/mitre`, `source/tryhackme`, etc.
 
 **Special Tags**:
+
 - `pii/redacted` - Contains redacted PII
 - `status/incomplete`, `status/archived`
 - `type/checklist`, `type/procedure`, `type/reference`, `type/cheatsheet`, `type/glossary`
@@ -198,6 +211,7 @@ status:: ready
 ### Workflow Established
 
 **Step 1: Preparation**
+
 - ✅ Merge PDFs (using `pdfunite` or `gs`) into single file
 - ✅ Extract to Markdown using `pdf_to_md.py`
 - ✅ Clean with `markdowncleaner` library (handles externally-managed environment)
@@ -215,6 +229,7 @@ done
 ```
 
 **Advantages of batch conversion**:
+
 - No manual splitting needed
 - Each PDF stays as logical chunk
 - Better for LLM processing
@@ -308,18 +323,21 @@ For your RTX 3070:
 ### Course Structure
 
 **Weeks 1-3 (Course 1: IT Essentials)**
+
 - Setup & orientation, PKM system establishment
 - Virtualization fundamentals (bare metal vs hosted)
 - OSI model, network protocols, Wireshark labs
 - Network segmentation, VLANs
 
 **Weeks 4-8 (Courses 2-3)**
+
 - Firewalls, VPNs, protocols
 - Windows/Linux logging and event management
 - Network baselines & monitoring
 - Risk management frameworks (NIST RMF)
 
 **Weeks 9-15 (Courses 4-7)**
+
 - Threat landscape and actors
 - Encryption (symmetric/asymmetric, PGP/GPG)
 - SIEM and log analysis
@@ -327,6 +345,7 @@ For your RTX 3070:
 - SOC operations and ticketing
 
 **Weeks 16-30 (Courses 8-12)**
+
 - Governance, Risk, Compliance (GRC)
 - Vulnerability management lifecycle
 - Security policies and regulation
@@ -351,6 +370,7 @@ For your RTX 3070:
 ### Comprehensive Tag List
 
 **Core Cybersecurity Concepts**:
+
 - `#cybersecurity-basics`, `#osilayers`, `#networking`, `#firewalls`, `#vpns`
 - `#network-segmentation`, `#protocols`, `#log-management`, `#siem`
 - `#threat-detection`, `#incident-response`, `#risk-management`
@@ -358,30 +378,36 @@ For your RTX 3070:
 - `#threat-intelligence`, `#mitre-attck`, `#cvss`, `#nist-rmf`
 
 **Tools & Hands-On**:
+
 - `#wireshark`, `#nmap`, `#openvas`, `#aircrack-ng`
 - `#virtualbox`, `#vmware`, `#event-viewer`, `#prtg`
 - `#bash`, `#python`, `#regex`, `#encryption`, `#gpg`, `#kleopatra`
 - `#scripting`, `#automation`
 
 **Technical Skills & Workflows**:
+
 - `#lab-exercises`, `#baselining`, `#monitoring`, `#tickets`, `#soc`
 - `#blue-team`, `#red-team`, `#incident-escalation`, `#reporting`
 - `#business-communication`, `#professional-email`, `#presentations`
 - `#playbooks`, `#contingency-planning`
 
 **Project & Collaboration**:
+
 - `#capstone`, `#case-study`, `#peer-review`, `#group-work`, `#pkm`
 - `#portfolio`, `#career-prep`
 
 **Regulation, Policy, Compliance**:
+
 - `#pci-dss`, `#hipaa`, `#coppa`, `#privacy-law`, `#canada-cyberlaw`
 - `#audit`, `#continuous-compliance`
 
 **Advanced & Emerging**:
+
 - `#ai-literacy`, `#machine-learning`, `#emerging-threats`
 - `#cloud-security`, `#devsecops`
 
 **Soft Skills & Meta-Learning**:
+
 - `#feedback`, `#reflection`, `#learning-strategies`, `#time-management`
 - `#teamwork`, `#communication-skills`, `#mentoring`
 
@@ -400,6 +426,7 @@ cp logseq_notes/*.md /path/to/your/logseq/graph/pages/
 ```
 
 Then in Logseq:
+
 1. Re-index (Settings → Advanced → Re-index)
 2. Navigate to `[[Lighthouse Labs Cybersecurity - Master Index]]`
 
@@ -424,26 +451,31 @@ All query examples for filtering by course, week, topic already documented and t
 ### Planned Phases
 
 **Phase 1: Prepare & Verify** (2-4 hours)
+
 - Investigate empty week headers
 - Extract week outline
 - Create course index pages
 
 **Phase 2: Raw Import** (Week 2-3)
+
 - Organize by course/week structure
 - Extract topics and learning objectives
 - Create mapping documents
 
 **Phase 3: Processing & Enrichment** (Week 4-6)
+
 - Add metadata and properties
 - Create cross-references
 - Build relationship maps
 
 **Phase 4: Indexing & Automation** (Week 7)
+
 - Create advanced queries
 - Export for LLM access
 - Build discovery tools
 
 **Phase 5: Continuous Maintenance** (Ongoing)
+
 - Weekly review
 - Monthly audits
 - Quarterly reorganization
@@ -506,12 +538,14 @@ Based on your sophisticated approach to knowledge organization, a **three-layer 
 3. **Layer 3 - Dynamic Linking**: Project-based connections, prerequisite chains, career goal alignment
 
 This transforms your knowledge base from a static repository into a **personal learning compass** that:
+
 - Tracks proficiency growth automatically via tags
 - Shows what you're expert in vs gaps needing study
 - Connects knowledge to active projects and career goals
 - Builds a meta-knowledge graph of your learning journey
 
 **New documents created:**
+
 - `THREE-LAYER-LOGSEQ-ARCHITECTURE.md` - Full architecture specification
 - `IMPLEMENTATION-GUIDE-THREE-LAYER.md` - Concrete steps and templates
 
@@ -570,4 +604,3 @@ You have a **solid, tested foundation** with:
 - ✅ Action plan with 5 phases
 
 **Next phase**: Execute import, apply tags, and optimize for both human and LLM access.
-

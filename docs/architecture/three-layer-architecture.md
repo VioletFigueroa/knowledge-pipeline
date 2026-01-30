@@ -54,6 +54,7 @@ week:: 3
 ### 1.2 Create Hierarchical Index Pages
 
 **Master Index** (`00-Dashboard.md`):
+
 ```markdown
 ---
 title:: Dashboard - Knowledge Journey Map
@@ -83,6 +84,7 @@ updated:: 2025-12-18
 ```
 
 **Course Index** (e.g., `01-Course-1-IT-Essentials.md`):
+
 ```markdown
 ---
 title:: Course 1 - IT Essentials
@@ -119,6 +121,7 @@ completeness:: 100%
 ```
 
 **Week/Topic Index** (e.g., `03-Week-03-Networking-Fundamentals.md`):
+
 ```markdown
 ---
 title:: Week 3 - Networking Fundamentals
@@ -170,6 +173,7 @@ proficiency:: intermediate
 Create timeline views for learning progression:
 
 **Monthly Snapshot** (`Archive-2025-November.md`):
+
 ```markdown
 ---
 title:: November 2025 - Learning Archive
@@ -219,6 +223,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ### 2.2 Tag Dimensions
 
 **Domain Tags** (What is this about?)
+
 ```
 #domain/cybersecurity
   #domain/cybersecurity/network-security
@@ -230,6 +235,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Activity Tags** (What can you do with this?)
+
 ```
 #activity/learn::beginner     - First encounter with concept
 #activity/learn::intermediate - Can teach others
@@ -241,6 +247,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Proficiency Tags** (Track your mastery)
+
 ```
 #proficiency/networking::novice        - Just learned
 #proficiency/networking::competent     - Can apply independently
@@ -251,6 +258,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Project/Goal Tags** (How does this serve you?)
+
 ```
 #goal/short-term/security-plus-exam
 #goal/short-term/homelab-build
@@ -262,6 +270,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Connection Tags** (How does this relate to other things?)
+
 ```
 #connects-to/cloud-security      - Related but different topic
 #builds-on/linux-fundamentals    - Prerequisite knowledge
@@ -271,6 +280,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Readiness Tags** (Is this job-ready?)
+
 ```
 #readiness/job::security-analyst::ready
 #readiness/job::network-engineer::partial
@@ -280,6 +290,7 @@ Tags are NOT flat - they're hierarchical and multi-dimensional:
 ```
 
 **Source/Integrity Tags** (Track origin and quality)
+
 ```
 #source/lighthouse-labs/compass
 #source/lighthouse-labs/case-study
@@ -338,6 +349,7 @@ created-chronological:: 2025-W47
 ### 2.4 Proficiency Mapping Queries
 
 **Find Your Strengths** (What you're excellent at):
+
 ```clojure
 {{query 
   (and 
@@ -348,6 +360,7 @@ created-chronological:: 2025-W47
 ```
 
 **Find Your Gaps** (What needs study):
+
 ```clojure
 {{query 
   (and 
@@ -358,6 +371,7 @@ created-chronological:: 2025-W47
 ```
 
 **Find Job-Ready Content** (What you can use on resume):
+
 ```clojure
 {{query 
   (and 
@@ -368,6 +382,7 @@ created-chronological:: 2025-W47
 ```
 
 **Certification Readiness** (What you know vs need):
+
 ```clojure
 {{query 
   (and 
@@ -377,6 +392,7 @@ created-chronological:: 2025-W47
 ```
 
 **Proficiency by Domain** (Heatmap):
+
 ```clojure
 {{query 
   (and 
@@ -394,6 +410,7 @@ created-chronological:: 2025-W47
 Links are structured to enable specific query patterns and meta-knowledge discovery:
 
 **Hierarchical Links** (Content organization):
+
 ```markdown
 # OSI Model
 ## Layers
@@ -408,6 +425,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 ```
 
 **Prerequisite Links** (Learning path):
+
 ```markdown
 # Firewall Configuration Lab
 ## Prerequisites
@@ -421,6 +439,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 ```
 
 **Project Links** (Connects to real work):
+
 ```markdown
 # VPN Configuration Reference
 ## Used In Projects
@@ -438,6 +457,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 ```
 
 **Proficiency Evolution Links** (Track growth):
+
 ```markdown
 # Wireshark Packet Analysis
 
@@ -453,6 +473,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 ```
 
 **Enrichment Links** (Deepens understanding):
+
 ```markdown
 # Threat Modeling Fundamentals
 
@@ -468,6 +489,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 ```
 
 **Gap Links** (Surfaces what's missing):
+
 ```markdown
 # Network Security
 
@@ -490,6 +512,7 @@ Links are structured to enable specific query patterns and meta-knowledge discov
 For each active project, create a **Project Hub** that radiates outward to relevant knowledge:
 
 **Example: Project Hub** (`Project-Homelab-Network-Infrastructure.md`):
+
 ```markdown
 ---
 title:: Project: Homelab Network Infrastructure
@@ -533,6 +556,7 @@ Design and implement a secure, segmented home network using VLAN, firewall, and 
 ## Knowledge Flow Timeline
 
 ```
+
 Week 1-2: Foundation (Nov 1-15)
   [[Networking Fundamentals]] → [[VLAN Configuration]]
   
@@ -544,6 +568,7 @@ Week 5: Hardening (Dec 1-15)
   
 Week 6-8: Advanced (Dec 15-31)
   [[Monitoring Setup]] + [[Incident Response]]
+
 ```
 
 ## Current Tasks
@@ -566,6 +591,7 @@ Week 6-8: Advanced (Dec 15-31)
 ### 3.3 Reverse Connection: Goal-Based Views
 
 **Example: Goal Hub** (`Goal-Security-Analyst-Role.md`):
+
 ```markdown
 ---
 title:: Goal: Security Analyst Career Transition
@@ -639,6 +665,7 @@ priority:: high
 Use queries to surface patterns:
 
 **"What Am I Getting Really Good At?"**
+
 ```clojure
 {{query 
   (and 
@@ -648,9 +675,11 @@ Use queries to surface patterns:
   )
 }}
 ```
+
 Returns: Marketable skills you've mastered
 
 **"Where Do I Have Dangerous Gaps?"**
+
 ```clojure
 {{query 
   (and 
@@ -659,9 +688,11 @@ Returns: Marketable skills you've mastered
   )
 }}
 ```
+
 Returns: Critical things you need to learn for your goals
 
 **"What Topics Are Most Connected to My Projects?"**
+
 ```clojure
 {{query 
   (and 
@@ -670,17 +701,21 @@ Returns: Critical things you need to learn for your goals
   )
 }}
 ```
+
 Returns: Your applied learning areas
 
 **"What Have I Learned Most Recently?"**
+
 ```clojure
 {{query 
   (block-content "created-chronological" "2025-W50")
 }}
 ```
+
 Returns: Learning timeline for reflection
 
 **"What Topics Do I Know Enough to Teach?"**
+
 ```clojure
 {{query 
   (and 
@@ -689,6 +724,7 @@ Returns: Learning timeline for reflection
   )
 }}
 ```
+
 Returns: Teachable content for resume/interviews
 
 ### Skill Tree Visualization
@@ -696,6 +732,7 @@ Returns: Teachable content for resume/interviews
 Create a skill tree showing prerequisite chains and mastery levels:
 
 **Format**:
+
 ```markdown
 # Cybersecurity Skill Tree
 
@@ -837,6 +874,7 @@ imported_content = import_note_with_layers(
 Create tagging templates for common import scenarios:
 
 **Lighthouse Labs Course Import Template**:
+
 ```markdown
 ---
 # Automated (from metadata)
@@ -870,6 +908,7 @@ quality:: draft                  # Will review and change to "verified" or "refi
 As you review and use notes, populate dynamic links:
 
 **Review Checklist**:
+
 ```markdown
 # Link Population Checklist
 
@@ -937,10 +976,12 @@ Create a summary page that shows your proficiency landscape:
 ## Proficiency Growth Timeline
 
 ```
+
 Month 1: Started with 0 expert topics, 15 gaps
 Month 2: 2 topics → expert, gaps reduced to 12
 Month 3: 8 topics → strong/expert, gaps to 8
 Month 4: (Current) 12 expert, 31 strong, 8 gaps
+
 ```
 
 ## Job-Readiness Heatmap
@@ -979,6 +1020,7 @@ Month 4: (Current) 12 expert, 31 strong, 8 gaps
 ### Example: Single Note Through All Three Layers
 
 **Original Note** (from Lighthouse Labs Week 3):
+
 ```
 # Firewall Configuration Best Practices
 
@@ -1056,6 +1098,7 @@ tags::
 ## QUERYING FOR META-KNOWLEDGE
 
 ### Query: "What Do I Know Well?"
+
 Shows your competitive advantages
 
 ```clojure
@@ -1069,6 +1112,7 @@ Shows your competitive advantages
 ```
 
 ### Query: "What's My Learning Velocity?"
+
 Shows recent growth in specific domains
 
 ```clojure
@@ -1081,6 +1125,7 @@ Shows recent growth in specific domains
 ```
 
 ### Query: "What Do I Need for This Goal?"
+
 Shows knowledge gaps relative to career target
 
 ```clojure
@@ -1093,6 +1138,7 @@ Shows knowledge gaps relative to career target
 ```
 
 ### Query: "How Connected Is My Knowledge?"
+
 Shows which topics link to many others (hubs)
 
 ```clojure
@@ -1109,20 +1155,24 @@ Shows which topics link to many others (hubs)
 ## IMPLEMENTATION TIMELINE
 
 **Week 1: Setup**
+
 - Create Layer 1 index structure
 - Create Layer 2 tag schema documentation
 - Design Layer 3 linking conventions
 
 **Week 2: Import Lighthouse Labs**
+
 - Batch import 600 notes with Layer 1 metadata
 - Apply Layer 2 initial tags (semi-automated)
 - Placeholder Layer 3 connections
 
 **Week 3: Import Perplexity & VS Code**
+
 - Same process for other sources
 - Consolidate duplicate topics
 
 **Week 4+: Ongoing Refinement**
+
 - As you review notes, populate Layer 3 links
 - Update proficiency tags as you practice
 - Monitor heatmap for emerging patterns
@@ -1133,7 +1183,7 @@ Shows which topics link to many others (hubs)
 
 Your three-layer system is working well when you can:
 
-1. **Layer 1 Success**: 
+1. **Layer 1 Success**:
    - [ ] Trace any note back to original course/source
    - [ ] See chronological learning progression
    - [ ] Navigate by hierarchy without confusion
@@ -1166,4 +1216,3 @@ Your three-layer system is working well when you can:
 5. **Grow Layer 3 organically** - Populate connections as you use notes
 
 This system transforms your knowledge base from a archive into a **personal learning compass** that guides your journey.
-

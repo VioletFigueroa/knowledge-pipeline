@@ -243,6 +243,7 @@ print(f"Report: {report}")
 ### Issue: "ModuleNotFoundError: No module named 'pandas'"
 
 **Solution**: Install required packages
+
 ```bash
 pip install pandas pyyaml spellchecker
 ```
@@ -250,6 +251,7 @@ pip install pandas pyyaml spellchecker
 ### Issue: Files not found in source directory
 
 **Solution**: Verify path exists and contains .md files
+
 ```bash
 ls -la /path/to/source/
 find /path/to/source/ -name "*.md" | wc -l
@@ -258,6 +260,7 @@ find /path/to/source/ -name "*.md" | wc -l
 ### Issue: Validation fails with "Unclosed frontmatter"
 
 **Solution**: Check frontmatter format in processed files
+
 ```bash
 head -20 /path/to/problematic/file.md
 ```
@@ -267,6 +270,7 @@ YAML frontmatter must be properly closed with `---` on its own line.
 ### Issue: "Invalid tag format" errors
 
 **Solution**: Review tag-schema.json for valid formats
+
 ```bash
 cat schemas/tag-schema.json | grep -A5 '"format"'
 ```
@@ -276,6 +280,7 @@ Tags must follow format: `#dimension/path::level` (if applicable)
 ### Issue: No files processed
 
 **Solution**: Check if files are actually .md and readable
+
 ```bash
 file /path/to/source/*.md
 chmod +r /path/to/source/*.md

@@ -37,36 +37,36 @@ You now have a **complete, programmatic, reusable batch import system** that:
 
 ### 🐍 Python Implementation (5 Modules)
 
-3. **orchestrate_import.py** (450+ lines)
+1. **orchestrate_import.py** (450+ lines)
    - Main orchestration framework
    - Coordinates all 5 stages
    - Manages output directories and logging
    - Handles errors and generates final summary
 
-4. **stage_1_quality_assurance.py** (450+ lines)
+2. **stage_1_quality_assurance.py** (450+ lines)
    - Markdown linting (headings, lists, code blocks, formatting)
    - Spelling and grammar checking
    - Metadata extraction from existing files
    - Auto-fixes simple issues, flags complex ones for review
 
-5. **stage_2_layer1_metadata.py** (400+ lines)
+3. **stage_2_layer1_metadata.py** (400+ lines)
    - Parses file paths to extract hierarchy
    - Builds YAML frontmatter with source, dates, metadata
    - Validates Layer 1 integrity
    - Handles Lighthouse Labs, Perplexity, journals, generic sources
 
-6. **stage_3_layer2_tagging.py** (500+ lines)
+4. **stage_3_layer2_tagging.py** (500+ lines)
    - Extracts keywords from content
    - Maps to 8 semantic tag dimensions
    - Validates tag format and structure
    - Auto-generates most tags, user populates optional ones
 
-7. **stage_4_layer3_placeholders.py** (200+ lines)
+5. **stage_4_layer3_placeholders.py** (200+ lines)
    - Detects connection keywords
    - Creates placeholder sections for user to populate
    - Validates Layer 3 structure
 
-8. **stage_5_validation.py** (400+ lines)
+6. **stage_5_validation.py** (400+ lines)
    - Comprehensive file integrity validation
    - Batch-level consistency checks
    - Tag coverage analysis and anomaly detection
@@ -74,29 +74,29 @@ You now have a **complete, programmatic, reusable batch import system** that:
 
 ### ⚙️ Configuration & Reference Files
 
-9. **config.json** (100+ lines)
+1. **config.json** (100+ lines)
    - Main configuration with all settings
    - Validation rules, performance settings, field definitions
    - Points to reference files
 
-10. **schemas/tag-schema.json** (300+ lines)
+2. **schemas/tag-schema.json** (300+ lines)
     - Complete tag schema definition
     - All 8 dimensions with rules and examples
     - Tagging workflow and validation rules
 
-11. **dictionaries/technical-terms.json** (100+ lines)
+3. **dictionaries/technical-terms.json** (100+ lines)
     - Technical terms database (55+ terms)
     - Prevents false spelling positives
     - Customizable per domain
 
-12. **dictionaries/custom-dictionary.json** (50+ lines)
+4. **dictionaries/custom-dictionary.json** (50+ lines)
     - Custom dictionary for spell checking
     - Technical acronyms and course terms
     - Easily expandable
 
 ### 📚 Documentation
 
-13. **IMPORT-PIPELINE-SETUP.md** (300+ lines)
+1. **IMPORT-PIPELINE-SETUP.md** (300+ lines)
     - Complete setup guide with directory structure
     - Quick start, testing procedures
     - Troubleshooting guide
@@ -104,7 +104,7 @@ You now have a **complete, programmatic, reusable batch import system** that:
     - Batch processing workflows
     - Monitoring and logging instructions
 
-14. **30-DAY-IMPLEMENTATION-ROADMAP.md** (Updated)
+2. **30-DAY-IMPLEMENTATION-ROADMAP.md** (Updated)
     - Now incorporates programmatic import system
     - Days 8-9: Automated import execution
     - Days 12-13: Verification procedures
@@ -161,13 +161,16 @@ OUTPUT: 600 Production-Ready Files
 ## KEY FEATURES
 
 ### ✅ Autonomous Execution
+
 - Can run with single command: `python3 orchestrate_import.py --source-dir ... --batch-id ...`
 - LLM agents can execute following task specification
 - Humans can monitor via logs and reports
 - Clear checkpoints where human review required
 
 ### ✅ Multi-Source Support
+
 Automatically handles:
+
 - **Lighthouse Labs**: Course X > Week Y > Topic Z hierarchy
 - **Perplexity**: Category > Topic structure
 - **VS Code exports**: Project > file structure
@@ -175,7 +178,9 @@ Automatically handles:
 - **Custom**: Generic path parsing for any structure
 
 ### ✅ Quality Assurance
+
 Five validation layers:
+
 1. Markdown linting (auto-fixes)
 2. Metadata validation (dates, formats)
 3. Tag validation (format, dimensions)
@@ -183,18 +188,21 @@ Five validation layers:
 5. Batch consistency (duplicates, integrity)
 
 ### ✅ Error Recovery
+
 - Stops at failures with clear error messages
 - Points to specific error files for review
 - Can retry individual stages without re-running all stages
 - Provides recovery procedures for each error type
 
 ### ✅ Comprehensive Reporting
+
 - Stage outputs in CSV format (inspection, analysis)
 - Deployment report shows quality metrics
 - Anomaly detection flags over/under-tagged files
 - Success criteria clearly defined
 
 ### ✅ Extensibility
+
 - Modular design: each stage is independent
 - Can add new source types by creating parser
 - Can customize tag schema in JSON
@@ -244,8 +252,10 @@ cp /tmp/lighthouse_output/processed_batch_files/*.md ~/Logseq/graph/pages/
 ## WHAT EACH STAGE PRODUCES
 
 ### Stage 1: Quality Assurance
+
 **Input**: Raw markdown files  
 **Output**:
+
 - `import-manifest.csv` - All files with metadata
 - `linting-errors.csv` - Auto-fixed linting issues
 - `linting-review-required.csv` - Manual review items
@@ -253,14 +263,17 @@ cp /tmp/lighthouse_output/processed_batch_files/*.md ~/Logseq/graph/pages/
 - `existing-metadata.csv` - Extracted metadata
 
 ### Stage 2: Layer 1 Metadata
+
 **Input**: Files from Stage 1  
 **Output**:
+
 - Files with YAML frontmatter added
 - `hierarchy-mapping.csv` - Hierarchy structure
 - `layer1-applied.csv` - Mapping by file
 - `layer1-validation-results.csv` - Validation results
 
 **Example Frontmatter**:
+
 ```yaml
 source: lighthouse-labs
 hierarchy:
@@ -275,14 +288,17 @@ status: imported
 ```
 
 ### Stage 3: Layer 2 Tagging
+
 **Input**: Files from Stage 2  
 **Output**:
+
 - Files with ## Tags section added
 - `content-keywords.csv` - Extracted keywords
 - `tags-mapped.csv` - All tags mapped
 - `tags-validation-results.csv` - Tag validation
 
 **Example Tags Applied**:
+
 ```
 #source/lighthouse-labs #quality/verified
 #domain/cybersecurity/network-security
@@ -291,13 +307,16 @@ status: imported
 ```
 
 ### Stage 4: Layer 3 Placeholders
+
 **Input**: Files from Stage 3  
 **Output**:
+
 - Files with Layer 3 sections added
 - `layer3-candidates.csv` - Connection suggestions
 - `layer3-validation-results.csv` - Structure validation
 
 **Example Placeholders**:
+
 ```
 ## Prerequisites
 - [ ] [[]]
@@ -310,8 +329,10 @@ status: imported
 ```
 
 ### Stage 5: Validation
+
 **Input**: Files from Stage 4  
 **Output**:
+
 - `integrity-validation.csv` - File integrity check
 - `consistency-validation.csv` - Batch consistency
 - `tag-coverage-analysis.csv` - Tag statistics
@@ -325,24 +346,28 @@ status: imported
 After completion, you'll have:
 
 ### ✅ Production Quality
+
 - 99%+ files pass integrity validation
 - 100% consistency checks pass
 - < 1% files flagged as anomalies
 - All three layers applied to every file
 
 ### ✅ Fully Searchable
+
 - All files tagged with `#source/lighthouse-labs` (or your source)
 - Domain tags enable filtering by knowledge area
 - Proficiency tags enable tracking growth
 - Activity tags show note type
 
 ### ✅ Organized Hierarchy
+
 - Course/Week/Topic structure preserved
 - Chronological dates captured
 - Original file sources tracked
 - Ready for Logseq navigation
 
 ### ✅ Ready for Layer 3 Population
+
 - Placeholder sections waiting for user input
 - Connection candidates suggested for guidance
 - 30 min/day for user to populate (ongoing)
@@ -355,6 +380,7 @@ After completion, you'll have:
 This system can be used for:
 
 ### ✅ Additional Lighthouse Labs Batches
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/new/lighthouse/batch \
@@ -364,6 +390,7 @@ python3 orchestrate_import.py \
 ```
 
 ### ✅ Perplexity Research
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/perplexity/exports \
@@ -373,6 +400,7 @@ python3 orchestrate_import.py \
 ```
 
 ### ✅ VS Code Notes
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/vscode/exports \
@@ -382,6 +410,7 @@ python3 orchestrate_import.py \
 ```
 
 ### ✅ Journal Entries
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/journals \
@@ -413,23 +442,27 @@ Any LLM agent can run this by:
 ## NEXT STEPS
 
 ### Immediate (Today)
+
 1. ✅ [TEST] Run on 10 sample files
 2. ✅ [VERIFY] Review import-batch-report.md
 3. ✅ [VERIFY] Inspect a few processed files
 
 ### This Week
+
 1. Run full import of 600 Lighthouse Labs files
 2. Deploy to Logseq
 3. Verify search and navigation
 4. Begin Layer 3 population (30 min/day)
 
 ### This Month
+
 1. Import Perplexity research notes
 2. Import VS Code notes
 3. Complete Layer 3 population for first course
 4. Build proficiency dashboard
 
 ### Long-term
+
 1. Automate imports on schedule
 2. Build dashboards showing proficiency
 3. Use for resume building and interview prep
@@ -511,4 +544,3 @@ See: IMPORT-PIPELINE-SETUP.md → "Usage: Testing with Sample Files"
 **Built**: 2025-12-18  
 **Version**: 1.0  
 **Status**: Production Ready
-

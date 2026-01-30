@@ -9,6 +9,7 @@
 ## AGENT TASK STRUCTURE
 
 ### Overview Process
+
 ```
 [INPUT: Raw Note Files]
     ↓
@@ -33,13 +34,16 @@ Each stage produces intermediate artifacts that feed the next stage. All stages 
 
 **Purpose**: Ensure all markdown is clean, linted, and standardized before processing
 
-**Documentation Reference**: 
+**Documentation Reference**:
+
 - Read: `QUICK-REFERENCE-THREE-LAYER.md` → Tag Dimensions section
 - Reference: `markdown-linting-rules.json` (generated in this stage)
 
 ### Task 1.1: Identify All Source Files
+
 **Input**: Directory path (e.g., `/logseq_notes/`)  
 **Process**:
+
 - [ ] Recursively find all `.md` files
 - [ ] Count total files
 - [ ] Generate manifest: `import-manifest.csv` with columns:
@@ -52,6 +56,7 @@ Each stage produces intermediate artifacts that feed the next stage. All stages 
 **Output**: `import-manifest.csv` with all files sorted by priority
 
 **Script**: `scripts/1_1_identify_files.py`
+
 ```python
 def identify_files(source_dir):
     """Generate comprehensive file manifest for import"""
@@ -64,29 +69,34 @@ def identify_files(source_dir):
 ---
 
 ### Task 1.2: Lint Markdown Formatting
+
 **Input**: All files from Task 1.1  
 **Process**:
+
 - [ ] For each file, run markdownlint checks:
   - [ ] Heading hierarchy valid (no skips: H1→H2→H3)
   - [ ] Consistent list formatting (- or * or +, not mixed)
-  - [ ] Code blocks properly fenced (```language not ```)
+  - [ ] Code blocks properly fenced (```language not```)
   - [ ] Trailing spaces removed
   - [ ] Extra blank lines removed (max 1 between sections)
-  - [ ] Bold/italic formatting consistent (**bold** not __bold__)
+  - [ ] Bold/italic formatting consistent (**bold** not **bold**)
   - [ ] Links formatted correctly ([text](url))
   - [ ] No orphaned punctuation
 
 **Issues to Track**:
+
 - [ ] Log all linting issues to `linting-errors.log`
 - [ ] Auto-fix common issues (trailing spaces, inconsistent lists, extra blanks)
 - [ ] Flag complex issues for manual review: `linting-review-required.csv`
 
-**Output**: 
+**Output**:
+
 - Clean markdown files (fixed in place)
 - `linting-errors.log` (for review)
 - `linting-review-required.csv` (manual queue)
 
 **Script**: `scripts/1_2_lint_markdown.py`
+
 ```python
 def lint_markdown(file_path):
     """Apply markdownlint rules, auto-fix what possible"""
@@ -98,8 +108,10 @@ def lint_markdown(file_path):
 ---
 
 ### Task 1.3: Normalize Spelling & Grammar
+
 **Input**: Linted markdown files  
 **Process**:
+
 - [ ] For each file, identify:
   - [ ] Spelling errors (using pyspellchecker against English dictionary + custom terms)
   - [ ] Common typos (using regex patterns from `typo-patterns.json`)
@@ -107,20 +119,24 @@ def lint_markdown(file_path):
   - [ ] Consistency: "it's" vs "its", "affect" vs "effect", etc.
 
 **Custom Dictionary** (don't flag as errors):
+
 - Include course names: `Lighthouse Labs`, `VirtualBox`, `Cybersecurity`
 - Include technical terms: `hypervisor`, `virtualization`, `firewalls`
 - Load from: `custom-dictionary.json`
 
 **Auto-fix**:
+
 - Fix obvious typos from `typo-patterns.json`
 - Flag others for manual review
 
 **Output**:
+
 - Clean content files
 - `spelling-issues.csv` (for manual review)
 - `grammar-issues.csv` (for manual review)
 
 **Script**: `scripts/1_3_normalize_spelling.py`
+
 ```python
 def normalize_spelling(file_content, custom_dict):
     """Identify and flag spelling/grammar issues"""
@@ -132,8 +148,10 @@ def normalize_spelling(file_content, custom_dict):
 ---
 
 ### Task 1.4: Extract & Clean Existing Metadata
+
 **Input**: Cleaned markdown files  
 **Process**:
+
 - [ ] For each file, detect existing metadata:
   - [ ] YAML frontmatter (if present)
   - [ ] Properties blocks (if present)
@@ -141,12 +159,14 @@ def normalize_spelling(file_content, custom_dict):
   - [ ] Existing tags (capture, will normalize in Stage 3)
 
 **Clean**:
+
 - [ ] Remove old/obsolete metadata
 - [ ] Preserve creation dates
 - [ ] Preserve file titles
 - [ ] Remove duplicate tags (normalize in Stage 3)
 
 **Output**:
+
 - Cleaned files with minimal metadata
 - `existing-metadata.csv` with extracted:
   - `file_name`
@@ -156,6 +176,7 @@ def normalize_spelling(file_content, custom_dict):
   - `metadata_format` (YAML, Properties, Inline, None)
 
 **Script**: `scripts/1_4_extract_metadata.py`
+
 ```python
 def extract_existing_metadata(file_content):
     """Extract and clean existing metadata from file"""
@@ -165,7 +186,8 @@ def extract_existing_metadata(file_content):
     # Return extracted data and clean content
 ```
 
-**Output of Stage 1**: 
+**Output of Stage 1**:
+
 - All files lint-clean
 - `import-manifest.csv` with all files
 - `existing-metadata.csv` with extracted metadata
@@ -180,16 +202,20 @@ def extract_existing_metadata(file_content):
 **Purpose**: Apply Layer 1 structure (hierarchy + chronological + source tracking)
 
 **Documentation Reference**:
+
 - Read: `THREE-LAYER-LOGSEQ-ARCHITECTURE.md` → Layer 1 specification
 - Reference: `import-manifest.csv` from Stage 1
 - Reference: `existing-metadata.csv` from Stage 1
 
 ### Task 2.1: Map File to Source Hierarchy
-**Input**: 
+
+**Input**:
+
 - File paths from manifest
 - Source directory structure (e.g., Lighthouse Labs: `Course_N/Week_N/Topic.md`)
 
 **Process**:
+
 - [ ] Parse file path to extract hierarchy
 - [ ] Detect source type:
   - [ ] Lighthouse Labs: Extract Course X, Week Y, Topic Z
@@ -199,6 +225,7 @@ def extract_existing_metadata(file_content):
   - [ ] Other: Use directory structure
 
 **Build Hierarchy Data**:
+
 ```csv
 file_name,source_type,hierarchy_level_1,hierarchy_level_2,hierarchy_level_3,hierarchy_level_4,sort_key
 2024_04_01.md,journal,2024,April,01,,,2024-04-01
@@ -208,6 +235,7 @@ Week_1_Virtualization.md,lighthouse_labs,Course_1,Week_1,Virtualization,,course-
 **Output**: `hierarchy-mapping.csv`
 
 **Script**: `scripts/2_1_map_hierarchy.py`
+
 ```python
 def map_file_to_hierarchy(file_path, source_type_map):
     """Extract hierarchy from file path/structure"""
@@ -220,12 +248,15 @@ def map_file_to_hierarchy(file_path, source_type_map):
 ---
 
 ### Task 2.2: Build Layer 1 Frontmatter
-**Input**: 
+
+**Input**:
+
 - Hierarchy mapping from Task 2.1
 - Existing metadata from Stage 1
 
 **Process**:
 For each file, create Layer 1 frontmatter:
+
 ```markdown
 ---
 source: lighthouse-labs
@@ -245,17 +276,20 @@ status: imported
 ```
 
 **Rules**:
+
 - [ ] Every file gets all Layer 1 fields (even if empty)
 - [ ] Dates in ISO format: YYYY-MM-DD
 - [ ] Chronological in: YYYY-WXX format
 - [ ] Link hierarchy back to index pages (will validate in Stage 5)
 - [ ] Import batch ID for tracking
 
-**Output**: 
+**Output**:
+
 - All files have Layer 1 frontmatter added
 - `layer1-applied.csv` tracking which files got which hierarchy
 
 **Script**: `scripts/2_2_build_layer1.py`
+
 ```python
 def build_layer1_frontmatter(hierarchy_data, existing_metadata):
     """Create Layer 1 frontmatter block"""
@@ -268,8 +302,10 @@ def build_layer1_frontmatter(hierarchy_data, existing_metadata):
 ---
 
 ### Task 2.3: Validate Layer 1 Integrity
+
 **Input**: Files with Layer 1 frontmatter  
 **Process**:
+
 - [ ] For each file, check:
   - [ ] YAML frontmatter parses correctly
   - [ ] All required fields present (source, hierarchy, created-date, import-date, status)
@@ -278,15 +314,18 @@ def build_layer1_frontmatter(hierarchy_data, existing_metadata):
   - [ ] Import batch ID matches expected batch
 
 **Issues**:
+
 - [ ] Log validation failures to `layer1-validation-failures.csv`
 - [ ] Auto-fix obvious date format issues
 - [ ] Flag content mismatches for manual review
 
-**Output**: 
+**Output**:
+
 - All files pass Layer 1 validation
 - `layer1-validation-results.csv` with pass/fail/fixed for each file
 
 **Script**: `scripts/2_3_validate_layer1.py`
+
 ```python
 def validate_layer1(frontmatter_dict):
     """Validate Layer 1 structure and content"""
@@ -297,6 +336,7 @@ def validate_layer1(frontmatter_dict):
 ```
 
 **Output of Stage 2**:
+
 - All files have proper Layer 1 structure
 - `layer1-applied.csv` with hierarchy mapping
 - `layer1-validation-results.csv` with validation status
@@ -309,14 +349,17 @@ def validate_layer1(frontmatter_dict):
 **Purpose**: Apply Layer 2 multi-dimensional tags for proficiency, domain, activity, project, goal, connections, readiness, source
 
 **Documentation Reference**:
+
 - Read: `THREE-LAYER-LOGSEQ-ARCHITECTURE.md` → Layer 2 Tag Dimensions
 - Read: `QUICK-REFERENCE-THREE-LAYER.md` → Tag Dimensions table
 - Reference: `tag-schema.json` (master tag definitions)
 - Reference: `tag-mapping-lighthouse-labs.csv` (course→tags mapping)
 
 ### Task 3.1: Extract Content Keywords for Auto-Tagging
+
 **Input**: File content from files  
 **Process**:
+
 - [ ] For each file, extract:
   - [ ] Title (primary descriptor)
   - [ ] First paragraph (context)
@@ -325,11 +368,13 @@ def validate_layer1(frontmatter_dict):
   - [ ] Concepts mentioned
 
 **Keyword Extraction**:
+
 - [ ] Use NLP to identify 5-10 key concepts per file
 - [ ] Cross-reference against `domain-terms-database.json`
 - [ ] Match file type (if Lighthouse Labs, use course-week-topic)
 
 **Output**: `content-keywords.csv` with:
+
 - `file_name`
 - `extracted_keywords` (list)
 - `extracted_domain` (best match from domain list)
@@ -337,6 +382,7 @@ def validate_layer1(frontmatter_dict):
 - `confidence` (how confident we are)
 
 **Script**: `scripts/3_1_extract_keywords.py`
+
 ```python
 def extract_keywords(file_content, domain_db, tech_terms_db):
     """Extract keywords and infer domain from content"""
@@ -350,7 +396,9 @@ def extract_keywords(file_content, domain_db, tech_terms_db):
 ---
 
 ### Task 3.2: Map Keywords to Tags
-**Input**: 
+
+**Input**:
+
 - Keywords from Task 3.1
 - Tag schema from `tag-schema.json`
 - Source-specific mappings (e.g., `tag-mapping-lighthouse-labs.csv`)
@@ -396,6 +444,7 @@ Build tags across all 8 dimensions:
    - Rules: Always 1, plus `#quality/verified` if applicable
 
 **Output**: `tags-applied.csv` with:
+
 - `file_name`
 - `domain_tags`
 - `activity_tags`
@@ -408,6 +457,7 @@ Build tags across all 8 dimensions:
 - `confidence` (for auto-generated tags)
 
 **Script**: `scripts/3_2_map_to_tags.py`
+
 ```python
 def map_keywords_to_tags(keywords, domain_db, tag_schema, source_mappings):
     """Convert keywords to multi-dimensional tags"""
@@ -419,12 +469,16 @@ def map_keywords_to_tags(keywords, domain_db, tag_schema, source_mappings):
 ---
 
 ### Task 3.3: Apply Tags to Files & Validate
-**Input**: 
+
+**Input**:
+
 - Files with Layer 1
 - Tags from Task 3.2
 
 **Process**:
+
 - [ ] For each file, create "Tags" section after Layer 1 frontmatter:
+
 ```markdown
 ---
 [Layer 1 Frontmatter]
@@ -439,6 +493,7 @@ def map_keywords_to_tags(keywords, domain_db, tag_schema, source_mappings):
 ```
 
 **Validation**:
+
 - [ ] All tags follow format: `#dimension/path/path::level` (or just `#dimension/path`)
 - [ ] No duplicate tags
 - [ ] No invalid dimensions
@@ -446,15 +501,18 @@ def map_keywords_to_tags(keywords, domain_db, tag_schema, source_mappings):
 - [ ] Domain hierarchy is consistent
 
 **Issues**:
+
 - [ ] Log validation failures to `tags-validation-failures.csv`
 - [ ] Flag low-confidence auto-generated tags for manual review
 
-**Output**: 
+**Output**:
+
 - All files have Layer 2 tags applied
 - `tags-applied.csv` with all tags for each file
 - `tags-validation-failures.csv` for manual review
 
 **Script**: `scripts/3_3_validate_tags.py`
+
 ```python
 def validate_tags(tags_dict, tag_schema):
     """Validate Layer 2 tags against schema"""
@@ -465,6 +523,7 @@ def validate_tags(tags_dict, tag_schema):
 ```
 
 **Output of Stage 3**:
+
 - All files have Layer 2 tags properly applied
 - `tags-applied.csv` with all tag mappings
 - `tags-validation-failures.csv` for manual fixes
@@ -477,16 +536,20 @@ def validate_tags(tags_dict, tag_schema):
 **Purpose**: Create Layer 3 connection placeholders (prerequisites, enables, project links, goal links)
 
 **Documentation Reference**:
+
 - Read: `THREE-LAYER-LOGSEQ-ARCHITECTURE.md` → Layer 3 Linking Protocol
 - Reference: `graph-structure-map.json` (known connections)
 
 ### Task 4.1: Detect Potential Layer 3 Connections
-**Input**: 
+
+**Input**:
+
 - File content
 - Tags from Stage 3
 - Existing graph structure (if any)
 
 **Process**:
+
 - [ ] For each file, analyze content to identify:
   - [ ] Prerequisites mentioned in text (e.g., "requires knowledge of X")
   - [ ] Concepts this enables (e.g., "builds on this foundation")
@@ -495,12 +558,14 @@ def validate_tags(tags_dict, tag_schema):
   - [ ] Goal relevance (from tags)
 
 **Detection Methods**:
+
 1. **Keyword matching**: Look for "prerequisite", "requires", "builds on", "enables", "next step"
 2. **Content similarity**: Compare with existing page titles in graph
 3. **Tag inference**: If tagged with `#project/homelab`, likely connects to homelab project
 4. **Domain analysis**: Files in same domain likely connected
 
 **Output**: `layer3-candidates.csv` with:
+
 - `file_name`
 - `potential_prerequisites` (list of likely files)
 - `potential_enables` (list of likely files)
@@ -509,6 +574,7 @@ def validate_tags(tags_dict, tag_schema):
 - `confidence` (high/medium/low)
 
 **Script**: `scripts/4_1_detect_connections.py`
+
 ```python
 def detect_layer3_connections(file_content, tags, graph_structure):
     """Identify potential Layer 3 connections"""
@@ -521,7 +587,9 @@ def detect_layer3_connections(file_content, tags, graph_structure):
 ---
 
 ### Task 4.2: Build Layer 3 Placeholder Sections
-**Input**: 
+
+**Input**:
+
 - Files with Layers 1-2
 - Connection candidates from Task 4.1
 
@@ -559,6 +627,7 @@ Create placeholder sections for Layer 3 (to be manually populated):
 ```
 
 **Rules**:
+
 - [ ] Empty checkboxes for user to fill in
 - [ ] Candidates listed for guidance (not auto-populated)
 - [ ] Clear marker where original content begins
@@ -566,6 +635,7 @@ Create placeholder sections for Layer 3 (to be manually populated):
 **Output**: Files with Layer 3 placeholder sections
 
 **Script**: `scripts/4_2_build_layer3_placeholders.py`
+
 ```python
 def build_layer3_placeholders(connection_candidates, confidence_threshold):
     """Create Layer 3 placeholder sections"""
@@ -578,8 +648,10 @@ def build_layer3_placeholders(connection_candidates, confidence_threshold):
 ---
 
 ### Task 4.3: Validate Layer 3 Structure
+
 **Input**: Files with Layer 3 placeholders  
 **Process**:
+
 - [ ] For each file, verify:
   - [ ] Placeholder sections present
   - [ ] Placeholder format correct (checkboxes, links)
@@ -588,6 +660,7 @@ def build_layer3_placeholders(connection_candidates, confidence_threshold):
 **Output**: `layer3-structure-validation.csv`
 
 **Script**: `scripts/4_3_validate_layer3.py`
+
 ```python
 def validate_layer3_structure(file_content):
     """Validate Layer 3 placeholder structure"""
@@ -598,6 +671,7 @@ def validate_layer3_structure(file_content):
 ```
 
 **Output of Stage 4**:
+
 - All files have Layer 3 placeholder sections created
 - `layer3-candidates.csv` with connection suggestions
 - `layer3-structure-validation.csv` with validation status
@@ -610,11 +684,14 @@ def validate_layer3_structure(file_content):
 **Purpose**: Comprehensive QA before production deployment
 
 **Documentation Reference**:
+
 - Read: `QUICK-REFERENCE-THREE-LAYER.md` → What Success Looks Like
 
 ### Task 5.1: Full File Integrity Validation
+
 **Input**: Files from all 4 stages  
 **Process**:
+
 - [ ] For each file, verify:
   - [ ] File readable and parses as valid markdown
   - [ ] Layer 1 frontmatter valid YAML
@@ -628,6 +705,7 @@ def validate_layer3_structure(file_content):
 **Output**: `integrity-validation.csv` with pass/fail for each check
 
 **Script**: `scripts/5_1_validate_integrity.py`
+
 ```python
 def validate_file_integrity(file_content, file_path):
     """Comprehensive file integrity check"""
@@ -638,8 +716,10 @@ def validate_file_integrity(file_content, file_path):
 ---
 
 ### Task 5.2: Cross-File Consistency Check
+
 **Input**: All files from batch  
 **Process**:
+
 - [ ] Check across all files:
   - [ ] No duplicate file names
   - [ ] Hierarchy levels are consistent (no stray files)
@@ -651,6 +731,7 @@ def validate_file_integrity(file_content, file_path):
 **Output**: `consistency-validation.csv` with batch-level checks
 
 **Script**: `scripts/5_2_validate_consistency.py`
+
 ```python
 def validate_batch_consistency(all_files_metadata):
     """Check consistency across entire batch"""
@@ -663,9 +744,11 @@ def validate_batch_consistency(all_files_metadata):
 ---
 
 ### Task 5.3: Tag Coverage Analysis
+
 **Input**: All files with tags  
 **Process**:
 Generate statistics:
+
 - [ ] Distribution of domain tags (how many per domain)
 - [ ] Distribution of activity tags
 - [ ] Distribution of proficiency levels (should be mostly beginner on import)
@@ -673,6 +756,7 @@ Generate statistics:
 - [ ] Coverage of connection placeholders (should be 100%)
 
 **Anomalies to Flag**:
+
 - [ ] Files with no tags (should have at least source tag)
 - [ ] Files with > 10 tags (probably over-tagged)
 - [ ] Proficiency tags not all at beginner (check before import)
@@ -680,6 +764,7 @@ Generate statistics:
 **Output**: `tag-coverage-analysis.csv` and `tag-anomalies.csv`
 
 **Script**: `scripts/5_3_analyze_tag_coverage.py`
+
 ```python
 def analyze_tag_coverage(all_files_metadata):
     """Generate tag coverage statistics and identify anomalies"""
@@ -691,7 +776,9 @@ def analyze_tag_coverage(all_files_metadata):
 ---
 
 ### Task 5.4: Generate Final Import Report
-**Input**: 
+
+**Input**:
+
 - All validation results from 5.1-5.3
 - All stage outputs (manifest, hierarchy, tags, candidates)
 
@@ -748,6 +835,7 @@ Count: 3-5 files (< 1%)
 **Output**: `import-batch-report.md`
 
 **Script**: `scripts/5_4_generate_report.py`
+
 ```python
 def generate_import_report(all_validation_results, statistics):
     """Generate comprehensive import report"""
@@ -758,6 +846,7 @@ def generate_import_report(all_validation_results, statistics):
 ```
 
 **Output of Stage 5**:
+
 - Comprehensive import report
 - All validation results documented
 - Batch ready for production deployment
@@ -768,6 +857,7 @@ def generate_import_report(all_validation_results, statistics):
 ## EXECUTION WORKFLOW FOR AGENTS
 
 ### High-Level Agent Flow
+
 ```
 INPUT: task_spec.json containing:
   - source_directory
@@ -822,6 +912,7 @@ python3 scripts/orchestrate_import.py \
 ## CONFIGURATION FILES REQUIRED
 
 ### `config.json`
+
 ```json
 {
   "domain_mappings": {
@@ -838,6 +929,7 @@ python3 scripts/orchestrate_import.py \
 ```
 
 ### Key Reference Files to Create
+
 1. `tag-mapping-lighthouse-labs.csv` - Maps Course/Week/Topic to domain tags
 2. `custom-dictionary.json` - Technical terms to exclude from spell check
 3. `technical-terms.json` - Database of technical terms for keyword extraction
@@ -852,29 +944,34 @@ python3 scripts/orchestrate_import.py \
 ## ERROR HANDLING & RECOVERY
 
 ### If Stage 1 Fails
+
 - Review `linting-review-required.csv`
 - Manually fix files in `manual-review/`
 - Run Stage 1 again on fixed files
 - Continue to Stage 2
 
 ### If Stage 2 Fails
+
 - Review `layer1-validation-failures.csv`
 - Check hierarchy mapping in `hierarchy-mapping.csv`
 - Fix date format issues
 - Re-run Stage 2 on affected files
 
 ### If Stage 3 Fails
+
 - Review `tags-validation-failures.csv`
 - Check tag schema in `tag-schema.json`
 - Verify tag dimensions are valid
 - Re-run Stage 3 on affected files
 
 ### If Stage 4 Fails
+
 - Less critical (placeholders are guidance)
 - Review `layer3-candidates.csv` anyway
 - Ensure structure is valid
 
 ### If Stage 5 Fails
+
 - DO NOT DEPLOY
 - Fix all issues identified in validation CSVs
 - Re-run Stage 5 on entire batch
@@ -918,6 +1015,7 @@ Post-Deployment (ongoing)
 ## METRICS & TRACKING
 
 ### Per-Batch Metrics
+
 - Files processed: count
 - Processing time: total and per-file average
 - Quality: % passing each validation
@@ -925,6 +1023,7 @@ Post-Deployment (ongoing)
 - Error rate: files failing validation
 
 ### Cumulative Metrics
+
 - Total files imported to date
 - Total tags applied
 - Tag dimensions used
@@ -932,6 +1031,7 @@ Post-Deployment (ongoing)
 - Quality trend: are recent batches higher quality?
 
 ### User Progress Metrics (after Layer 3 population)
+
 - Files reviewed by user: count
 - Proficiency tags updated: count
 - Layer 3 connections populated: count
@@ -943,6 +1043,7 @@ Post-Deployment (ongoing)
 ## REUSABILITY FOR FUTURE IMPORTS
 
 This entire system is designed to be run repeatedly for:
+
 - New course materials
 - Perplexity research batches
 - VS Code export batches
@@ -950,6 +1051,7 @@ This entire system is designed to be run repeatedly for:
 - Any other markdown source
 
 **To reuse**:
+
 1. Create new batch_id
 2. Create new source_type mapping (if needed)
 3. Point to new source directory
@@ -957,7 +1059,8 @@ This entire system is designed to be run repeatedly for:
 5. All stages run automatically
 6. Get deployment report
 
-**Expected time**: 
+**Expected time**:
+
 - 100 files: ~3-4 hours (1st run with setup), ~1 hour (subsequent runs)
 - 600 files: ~15-20 hours (1st run), ~8-10 hours (subsequent runs)
 - Can be run in parallel on multiple batches
@@ -969,24 +1072,31 @@ This entire system is designed to be run repeatedly for:
 After all 5 stages complete, you should be able to answer:
 
 ✅ **"Can I search for notes by domain?"**
+
 - Run: `#domain/cybersecurity` → all cybersecurity notes appear
 
 ✅ **"Can I see my learning hierarchy?"**
+
 - Navigate: `[[Course 1]]` → see all weeks → see all topics
 
 ✅ **"Do I know what's new?"**
+
 - Search: `created-chronological: 2025-W50` → see this week's imports
 
 ✅ **"Can I track where notes came from?"**
+
 - Check Layer 1 frontmatter → source, original file path, import date
 
 ✅ **"Are tags consistent and correct?"**
+
 - Sample 20 random files → all tags valid and make sense
 
 ✅ **"Are placeholders ready for Layer 3?"**
+
 - Sample 10 files → all have prerequisite/enables/project/goal sections
 
 ✅ **"Is the batch production-ready?"**
+
 - `import-batch-report.md` status: READY FOR DEPLOYMENT
 
 ---

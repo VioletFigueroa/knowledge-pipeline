@@ -18,18 +18,21 @@ Choose your document below based on what you need right now.
 ## 🚀 START WITH ONE OF THESE (5-30 min)
 
 ### 1️⃣ Visual Learner? → [SECURITY-TESTING-VISUAL-GUIDE.md](SECURITY-TESTING-VISUAL-GUIDE.md)
+
 - **What**: Decision trees, flowcharts, visual maps
 - **Time**: 5 minutes
 - **Why**: Fastest way to understand your choices
 - **Best for**: Quick decision-making
 
 ### 2️⃣ Executive Overview? → [SECURITY-TESTING-SUMMARY.md](SECURITY-TESTING-SUMMARY.md)
+
 - **What**: High-level summary, key metrics, timelines
 - **Time**: 20 minutes
 - **Why**: Understand ROI and commitment
 - **Best for**: Decision-makers and planners
 
 ### 3️⃣ Need Everything? → [COMPLETE-DELIVERY-SUMMARY.md](COMPLETE-DELIVERY-SUMMARY.md)
+
 - **What**: What you got, what it does, what's next
 - **Time**: 15 minutes
 - **Why**: See both batch import system + security integrated
@@ -40,6 +43,7 @@ Choose your document below based on what you need right now.
 ## 🎯 THEN CHOOSE YOUR PATH
 
 ### Path A: Deep Diver
+
 *"I want to understand everything before starting"*
 
 1. Read [SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md) (1 hour)
@@ -53,6 +57,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### Path B: Hands-On Learner
+
 *"I learn by doing, show me what to do each day"*
 
 1. Read [SECURITY-TESTING-QUICKSTART.md](SECURITY-TESTING-QUICKSTART.md) (week-by-week guide)
@@ -66,6 +71,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### Path C: Delegator
+
 *"I'll give this to someone/something to implement"*
 
 1. Skim [SECURITY-TESTING-SUMMARY.md](SECURITY-TESTING-SUMMARY.md) (understand what it is)
@@ -79,6 +85,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### Path D: Quick Start
+
 *"I want to see it working in 30 minutes"*
 
 1. Read [INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md) → Steps 1-2 only (30 min)
@@ -94,6 +101,7 @@ Choose your document below based on what you need right now.
 ## 📚 DOCUMENT GUIDE
 
 ### [SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md)
+
 **The Complete Specification** (8,000+ words)
 
 | Aspect | Details |
@@ -107,6 +115,7 @@ Choose your document below based on what you need right now.
 | **Includes** | Code examples, tool explanations, FOSS standards |
 
 **Key Sections**:
+
 - Phase 1: Git & Foundation (3 days)
 - Phase 2: Static Analysis - SAST (3 days)
 - Phase 3: Testing Infrastructure (6 days)
@@ -120,6 +129,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### [SECURITY-TESTING-QUICKSTART.md](SECURITY-TESTING-QUICKSTART.md)
+
 **The Week-by-Week Action Guide** (4,500+ words)
 
 | Aspect | Details |
@@ -133,6 +143,7 @@ Choose your document below based on what you need right now.
 | **Includes** | Exact terminal commands, time estimates per task |
 
 **Key Sections**:
+
 - Week 1: Foundation & Quick Wins (Days 1-5)
 - Week 2: Testing & Security (Days 6-12)
 - Week 3: Documentation & Release (Days 13-21)
@@ -144,6 +155,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### [INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md)
+
 **Apply Security to Existing Code** (2,500+ words)
 
 | Aspect | Details |
@@ -157,6 +169,7 @@ Choose your document below based on what you need right now.
 | **Includes** | File creation checklist, compatibility verification |
 
 **Key Sections**:
+
 - Current State Analysis
 - Directory Restructuring Plan
 - Step-by-Step Integration (21 steps)
@@ -168,6 +181,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### [SECURITY-TESTING-SUMMARY.md](SECURITY-TESTING-SUMMARY.md)
+
 **Executive Overview & Decision Framework** (3,000+ words)
 
 | Aspect | Details |
@@ -181,6 +195,7 @@ Choose your document below based on what you need right now.
 | **Includes** | ROI analysis, implementation paths, checklist |
 
 **Key Sections**:
+
 - What Was Created (3 documents)
 - Key Tools & Frameworks
 - Implementation Checklist (3 phases)
@@ -192,6 +207,7 @@ Choose your document below based on what you need right now.
 ---
 
 ### [SECURITY-TESTING-VISUAL-GUIDE.md](SECURITY-TESTING-VISUAL-GUIDE.md)
+
 **Quick Reference with Diagrams** (2,000+ words)
 
 | Aspect | Details |
@@ -205,6 +221,7 @@ Choose your document below based on what you need right now.
 | **Includes** | Visual decision matrices, workflow diagrams |
 
 **Key Sections**:
+
 - 4-Document Navigation Map
 - Tools at a Glance
 - 7-Phase Implementation Timeline (Visual)
@@ -220,22 +237,26 @@ Choose your document below based on what you need right now.
 ### For Different Learning Styles
 
 **Visual Learner**:
+
 1. SECURITY-TESTING-VISUAL-GUIDE.md (5 min)
 2. INTEGRATION-SECURITY-TESTING.md (20 min)
 3. Start implementing (choose day-by-day guide)
 
 **Executive/Planner**:
+
 1. SECURITY-TESTING-SUMMARY.md (20 min)
 2. COMPLETE-DELIVERY-SUMMARY.md (10 min)
 3. Make decision on timeline
 4. Share appropriate doc with team
 
 **Hands-On Developer**:
+
 1. INTEGRATION-SECURITY-TESTING.md (20 min)
 2. Run Steps 1-2 right now (30 min)
 3. Continue with SECURITY-TESTING-QUICKSTART.md (day-by-day)
 
 **Deep Learner**:
+
 1. SECURITY-TESTING-INFRASTRUCTURE.md (1 hour - full spec)
 2. SECURITY-TESTING-QUICKSTART.md (30 min - commands)
 3. INTEGRATION-SECURITY-TESTING.md (20 min - apply it)
@@ -246,24 +267,31 @@ Choose your document below based on what you need right now.
 ## 🗺️ NAVIGATION BY NEED
 
 ### "I need to make a decision"
+
 → Start: [SECURITY-TESTING-SUMMARY.md](SECURITY-TESTING-SUMMARY.md) (20 min)
 
 ### "I need to understand all options"
+
 → Start: [SECURITY-TESTING-VISUAL-GUIDE.md](SECURITY-TESTING-VISUAL-GUIDE.md) (5 min)
 
 ### "I need to start today"
+
 → Start: [INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md) Steps 1-2 (30 min)
 
 ### "I need to understand what was built"
+
 → Start: [COMPLETE-DELIVERY-SUMMARY.md](COMPLETE-DELIVERY-SUMMARY.md) (10 min)
 
 ### "I need complete technical details"
+
 → Start: [SECURITY-TESTING-INFRASTRUCTURE.md](SECURITY-TESTING-INFRASTRUCTURE.md) (1 hour)
 
 ### "I need exact commands to run"
+
 → Start: [SECURITY-TESTING-QUICKSTART.md](SECURITY-TESTING-QUICKSTART.md) (30 min read, then follow weekly)
 
 ### "I need to integrate with existing code"
+
 → Start: [INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md) (20 min)
 
 ---
@@ -271,6 +299,7 @@ Choose your document below based on what you need right now.
 ## ✅ BEFORE YOU START
 
 Make sure you have:
+
 - [ ] Python 3.8+ installed
 - [ ] Git installed
 - [ ] 30 min free (for quick start) OR 50 hours over 3 weeks (for full)

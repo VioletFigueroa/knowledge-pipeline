@@ -9,6 +9,7 @@
 ## Executive Summary
 
 You should adopt a **single unified graph** rather than multiple graphs. This approach maximizes:
+
 - **Human usability**: Interconnected knowledge, powerful search/queries
 - **LLM agent capability**: Full context access, semantic relationships
 - **Scalability**: Easier to maintain, query, and extend
@@ -18,12 +19,14 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 ## Current Inventory
 
 ### Existing Notes
+
 - **Journals**: 70+ dated entries (2022-2025) - Daily captures
 - **Pages**: 400+ thematic pages - Organized by topic/category
 - **Logseq Setup**: Already configured with Markdown format
 - **Assets**: Images folder for media references
 
 ### New Sources to Integrate
+
 1. **VS Code notes**: Scattered settings, snippets, learnings
 2. **Perplexity exports**: Research queries and responses
 3. **Lighthouse Labs**: Course notes and projects
@@ -36,12 +39,14 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 ### Strategy: Single Unified Graph
 
 **Why not multiple graphs?**
+
 - ❌ Fragmented knowledge - hard to cross-reference
 - ❌ LLM agents need holistic context - API queries become complex
 - ❌ Search becomes scattered across graphs
 - ❌ Relationship mapping is lost between domains
 
 **Why single graph?**
+
 - ✅ Interconnected knowledge base - leverage Logseq's linking
 - ✅ LLM-friendly - agents can search globally with context
 - ✅ Flexible querying - advanced queries across all topics
@@ -52,6 +57,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 ## Tagging and Metadata System
 
 ### Source Tagging (Track Origin)
+
 ```
 #source/vscode
 #source/perplexity  
@@ -64,6 +70,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 **Purpose**: LLM agents can filter by source, you can review import quality
 
 ### Topic Tags (Knowledge Classification)
+
 ```
 #topic/cybersecurity
 #topic/web-development
@@ -77,6 +84,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 **Purpose**: Cross-domain search, thematic exploration
 
 ### Content Type Tags (Structural Classification)
+
 ```
 #type/research     - Perplexity findings, web research
 #type/course       - Lighthouse Labs materials
@@ -90,6 +98,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 **Purpose**: Helps with retrieval by content format
 
 ### Status Tags (Lifecycle)
+
 ```
 #status/raw        - Freshly imported, needs processing
 #status/processing - Being integrated/expanded
@@ -100,6 +109,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 **Purpose**: Track integration progress, filter for "actionable" notes
 
 ### LLM Agent Tags
+
 ```
 #llm/indexed       - Ready for semantic search
 #llm/metadata-rich - Has structured relationships
@@ -113,6 +123,7 @@ You should adopt a **single unified graph** rather than multiple graphs. This ap
 ## Directory & Page Structure
 
 ### Core Structure
+
 ```
 pages/
 ├── 000-Hub/                    # Central hubs
@@ -156,6 +167,7 @@ pages/
 ### Linking Strategy for LLMs
 
 **Hierarchical linking pattern:**
+
 ```markdown
 # Topic Page (High-level hub)
 
@@ -174,6 +186,7 @@ pages/
 ```
 
 **Block-level linking (for LLM context windows):**
+
 ```markdown
 - source: [[VS Code - ESLint Setup]]
 - related: [[Web Dev - Linting]]
@@ -186,6 +199,7 @@ pages/
 ## Implementation Phases
 
 ### Phase 1: Foundation Setup (Week 1)
+
 **Objective**: Prepare Logseq for integration
 
 - [ ] Create hub pages (Dashboard, Import-Queue, Source-Index)
@@ -200,6 +214,7 @@ pages/
 **Deliverable**: Clean, structured Logseq ready for imports
 
 ### Phase 2: Raw Import (Week 2-3)
+
 **Objective**: Get all content into Logseq
 
 **Sub-tasks:**
@@ -235,6 +250,7 @@ pages/
 **Deliverable**: All content accessible via Import-Queue
 
 ### Phase 3: Processing & Enrichment (Week 4-6)
+
 **Objective**: Transform raw imports into connected knowledge
 
 For each piece of content:
@@ -270,6 +286,7 @@ For each piece of content:
 **Deliverable**: Interconnected, queryable knowledge base
 
 ### Phase 4: Indexing & Automation (Week 7)
+
 **Objective**: Make knowledge discoverable to LLMs
 
 - [ ] Create query indexes:
@@ -292,6 +309,7 @@ For each piece of content:
 **Deliverable**: LLM-ready query system + human discovery tools
 
 ### Phase 5: Continuous Maintenance (Ongoing)
+
 **Objective**: Keep system healthy and evolving
 
 - [ ] Weekly review: Process new imports from `Import-Queue`
@@ -300,6 +318,7 @@ For each piece of content:
 - [ ] As-needed: Add new topics, update source tags
 
 **Metrics to track:**
+
 - Notes processed this week
 - Backlink density (higher = better interconnected)
 - Query types used most (for optimization)
@@ -310,6 +329,7 @@ For each piece of content:
 ## Technical Configuration for LLM Access
 
 ### Markdown Formatting Standards
+
 ```markdown
 ---
 tags: #source/perplexity #topic/cybersecurity #type/research #status/ready
@@ -334,6 +354,7 @@ llm-indexed: true
 ```
 
 ### Logseq Configuration for API/Export
+
 - [ ] Verify Markdown output format is clean
 - [ ] Enable graph export capabilities
 - [ ] Configure backup/export schedule
@@ -342,6 +363,7 @@ llm-indexed: true
 ### LLM Integration Patterns
 
 **For Claude/GPT via text export:**
+
 ```
 Export topic with: all backlinks + tags + structured metadata
 Keep context window in mind: ~100KB text per query
@@ -349,6 +371,7 @@ Group related blocks for coherent context
 ```
 
 **For Logseq API agents:**
+
 ```
 Query structure:
 1. Start with tag filter: #topic/X
@@ -362,6 +385,7 @@ Query structure:
 ## Benefits of This Approach
 
 ### For You (Human User)
+
 ✅ **Powerful Search**: Find anything by topic, source, type, or relationship  
 ✅ **Discovery**: Serendipitously find connections you missed  
 ✅ **Visualization**: See what you know and what gaps exist  
@@ -369,6 +393,7 @@ Query structure:
 ✅ **Integration**: Everything in one place - unified mental model
 
 ### For LLM Agents
+
 ✅ **Full Context**: Can access entire knowledge graph  
 ✅ **Semantic Search**: Find related concepts efficiently  
 ✅ **Relationship Traversal**: Follow links to build context  
@@ -376,6 +401,7 @@ Query structure:
 ✅ **Structured Export**: Clean, tagged data for processing
 
 ### For Both
+
 ✅ **Flexible**: Add new topics without restructuring  
 ✅ **Scalable**: Works with 100 notes or 10,000  
 ✅ **Maintainable**: Clear conventions = less mess over time  

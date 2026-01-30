@@ -153,6 +153,7 @@ EOF
 
 git add LICENSE CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md README.md
 git commit -m "Docs: Add license and community guidelines"
+
 ```
 
 ### Day 5: CI/CD Pipeline Basics (2 hours)
@@ -192,29 +193,29 @@ cat > Makefile << 'EOF'
 .PHONY: help test lint format security clean
 
 help:
-	@echo "make test - Run tests"
-	@echo "make lint - Run linters"
-	@echo "make format - Format code"
-	@echo "make security - Security scan"
+ @echo "make test - Run tests"
+ @echo "make lint - Run linters"
+ @echo "make format - Format code"
+ @echo "make security - Security scan"
 
 test:
-	pytest tests --cov=src
+ pytest tests --cov=src
 
 lint:
-	black --check src tests
-	flake8 src tests
-	mypy src --ignore-missing-imports
+ black --check src tests
+ flake8 src tests
+ mypy src --ignore-missing-imports
 
 format:
-	black src tests
+ black src tests
 
 security:
-	bandit -r src
-	safety check
+ bandit -r src
+ safety check
 
 clean:
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	rm -rf .pytest_cache .coverage htmlcov
+ find . -type d -name __pycache__ -exec rm -rf {} +
+ rm -rf .pytest_cache .coverage htmlcov
 EOF
 
 git add .github/workflows/tests.yml Makefile
@@ -599,6 +600,7 @@ chmod +x run-all-checks.sh
 Before considering code "production ready":
 
 ### Security
+
 - [ ] Bandit report shows no CRITICAL/HIGH
 - [ ] `safety check` passes
 - [ ] No hardcoded secrets in code
@@ -606,6 +608,7 @@ Before considering code "production ready":
 - [ ] SECURITY.md published
 
 ### Testing
+
 - [ ] Coverage > 85%
 - [ ] All tests pass locally
 - [ ] All tests pass in GitHub Actions
@@ -613,6 +616,7 @@ Before considering code "production ready":
 - [ ] Edge cases handled
 
 ### Code Quality
+
 - [ ] Black formatted
 - [ ] Flake8 clean
 - [ ] Pylint > 8.0
@@ -620,6 +624,7 @@ Before considering code "production ready":
 - [ ] No TODO/FIXME comments
 
 ### Documentation
+
 - [ ] README complete
 - [ ] CONTRIBUTING.md present
 - [ ] SECURITY.md present
@@ -627,6 +632,7 @@ Before considering code "production ready":
 - [ ] Docstrings on all public functions
 
 ### Release Ready
+
 - [ ] Version bumped
 - [ ] LICENSE file present
 - [ ] GitHub repository public
@@ -682,7 +688,7 @@ echo "=== Done ==="
 1. **Start Today**: Complete Day 1-2 (4 hours)
    - Get git + structure running
    - See green GitHub Actions
-   
+
 2. **This Week**: Complete Days 3-5 (6 hours)
    - First tests passing
    - Basic CI/CD working

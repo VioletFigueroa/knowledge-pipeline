@@ -10,6 +10,7 @@
 ## 🎯 WHAT YOU HAVE
 
 A complete, programmatic system for organizing your notes into a three-layer Logseq PKM that:
+
 - **Imports** 600+ files from any source automatically
 - **Organizes** by hierarchy, tags, and relationships
 - **Tracks** your proficiency growth over time
@@ -25,6 +26,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 **Before sharing as FOSS or creating extensions, read these:**
 
 **[SECURITY-TESTING-INFRASTRUCTURE.md](planning/security-infrastructure.md)** ← START HERE
+
 - Complete 7-phase implementation plan
 - SAST/DAST tools explained
 - Security best practices
@@ -35,6 +37,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 - **Difficulty: Medium (mostly setup)**
 
 **[SECURITY-TESTING-QUICKSTART.md](guides/security-quickstart.md)**
+
 - Week-by-week implementation guide
 - Day-by-day tasks with exact commands
 - Automation scripts
@@ -43,6 +46,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 - **Alternative to**: Full infrastructure doc (more actionable)
 
 **[INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md)**
+
 - How to add security/testing to existing batch import code
 - Zero breaking changes (additive only)
 - File creation checklist
@@ -54,6 +58,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
 ---
 
 ### START HERE: BATCH IMPORT SYSTEM (15 min)
+
 1. **[AUTOMATED-IMPORT-SYSTEM-SUMMARY.md](architecture/system-overview.md)**
    - Complete overview of what was built
    - Quick start instructions
@@ -61,6 +66,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - **Read this first**
 
 ### UNDERSTAND THE VISION (30 min)
+
 2. **[THREE-LAYER-LOGSEQ-ARCHITECTURE.md](architecture/three-layer-architecture.md)**
    - Complete architectural specification
    - All three layers explained with examples
@@ -68,7 +74,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - Proficiency tracking system
    - **Read if**: You want to understand the structure
 
-3. **[PRIOR-WORK-SUMMARY.md](PRIOR-WORK-SUMMARY.md)**
+2. **[PRIOR-WORK-SUMMARY.md](PRIOR-WORK-SUMMARY.md)**
    - What was already done in prior sessions
    - 353 organized notes existing
    - 600 Lighthouse Labs files ready
@@ -76,6 +82,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - **Read if**: You're new to this project
 
 ### DETAILED SPECIFICATIONS (1 hour)
+
 4. **[BATCH-IMPORT-TASK-SPECIFICATION.md](planning/batch-import-spec.md)**
    - Complete breakdown of import pipeline
    - All 5 stages with all tasks
@@ -83,7 +90,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - Configuration requirements
    - **Read if**: You need technical details
 
-5. **[LLM-AGENT-TASK-LIST.md](planning/agent-tasks.md)**
+2. **[LLM-AGENT-TASK-LIST.md](planning/agent-tasks.md)**
    - Autonomous task execution guide
    - For LLM agents to follow
    - 8 main tasks with checkpoints
@@ -91,6 +98,7 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - **Read if**: You want an agent to run this
 
 ### PRACTICAL GUIDES (45 min)
+
 6. **[IMPORT-PIPELINE-SETUP.md](guides/setup-guide.md)**
    - Complete setup instructions
    - Directory structure
@@ -99,14 +107,14 @@ A complete, programmatic system for organizing your notes into a three-layer Log
    - Troubleshooting guide
    - **Read if**: You're ready to run the import
 
-7. **[30-DAY-IMPLEMENTATION-ROADMAP.md](30-DAY-IMPLEMENTATION-ROADMAP.md)**
+2. **[30-DAY-IMPLEMENTATION-ROADMAP.md](30-DAY-IMPLEMENTATION-ROADMAP.md)**
    - Day-by-day implementation plan
    - Weekly milestones
    - Daily habits after completion
    - Success checklist
    - **Read if**: You want structured timeline
 
-8. **[QUICK-REFERENCE-THREE-LAYER.md](QUICK-REFERENCE-THREE-LAYER.md)**
+3. **[QUICK-REFERENCE-THREE-LAYER.md](QUICK-REFERENCE-THREE-LAYER.md)**
    - Quick lookup for tags
    - Copy-paste queries
    - Tag templates
@@ -151,9 +159,11 @@ All modules in `/scripts/` directory:
 ## ⚙️ CONFIGURATION FILES
 
 ### Main Configuration
+
 - **config.json** - All settings in one file
 
 ### Reference Databases
+
 - **schemas/tag-schema.json** - Complete tag definitions (8 dimensions)
 - **dictionaries/technical-terms.json** - Technical terms to exclude from spell check
 - **dictionaries/custom-dictionary.json** - Custom dictionary for spell checking
@@ -163,6 +173,7 @@ All modules in `/scripts/` directory:
 ## 🚀 QUICK START (Choose One)
 
 ### Option A: Run on 10 Test Files (15 min)
+
 ```bash
 cd scripts
 python3 orchestrate_import.py \
@@ -171,9 +182,11 @@ python3 orchestrate_import.py \
   --batch-id test-batch-1 \
   --output-dir /tmp/test_output
 ```
+
 See: IMPORT-PIPELINE-SETUP.md → "Testing with Sample Files"
 
 ### Option B: Run Full 600-File Import (2-3 hours)
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/all/lighthouse/files \
@@ -181,9 +194,11 @@ python3 orchestrate_import.py \
   --batch-id lighthouse-labs-batch-1 \
   --output-dir /tmp/lighthouse_output
 ```
+
 See: IMPORT-PIPELINE-SETUP.md → "Usage: Quick Start"
 
 ### Option C: Have an LLM Agent Run It
+
 1. Provide agent with LLM-AGENT-TASK-LIST.md
 2. Provide source files and batch parameters
 3. Agent executes autonomously
@@ -236,30 +251,35 @@ After import, you'll have:
 ## 📝 IMPLEMENTATION PHASES
 
 ### Phase 1: Setup (1 day)
+
 - Read AUTOMATED-IMPORT-SYSTEM-SUMMARY.md
 - Review IMPORT-PIPELINE-SETUP.md
 - Run test on 10 files
 - Verify setup works
 
 ### Phase 2: Import (3-4 hours)
+
 - Run full import of 600 Lighthouse Labs files
 - Monitor pipeline execution
 - Review final report
 - Deploy to Logseq
 
 ### Phase 3: Verification (1 hour)
+
 - Verify files in Logseq
 - Test search and queries
 - Check that all tags are searchable
 - Confirm hierarchy navigable
 
 ### Phase 4: Layer 3 Population (Ongoing, 30 min/day)
+
 - Review notes one by one
 - Populate prerequisites/enables
 - Add project connections
 - Update proficiency tags as you learn
 
 ### Phase 5: Meta-Knowledge (4-6 weeks)
+
 - Dashboard showing proficiency by domain
 - Job readiness tracker
 - Project knowledge map
@@ -271,19 +291,22 @@ After import, you'll have:
 
 This system works for any markdown source:
 
-### Already Configured For:
+### Already Configured For
+
 - **Lighthouse Labs** - Course/Week/Topic hierarchy
 - **Perplexity** - Category/Topic structure
 - **Journals** - Date-based organization
 - **Generic** - Fallback for any file path
 
-### To Add New Source Type:
+### To Add New Source Type
+
 1. Create parser function in stage_2_layer1_metadata.py
 2. Add to source_type options
 3. Map any special tags in config.json
 4. Run import with `--source-type your_type`
 
 **Example**: Importing Perplexity notes
+
 ```bash
 python3 orchestrate_import.py \
   --source-dir /path/to/perplexity \
@@ -312,6 +335,7 @@ Any LLM agent can run this by:
 ## 📚 TAGS EXPLAINED
 
 ### 8 Semantic Dimensions (Auto-Tagged)
+
 1. **Domain**: `#domain/cybersecurity/network-security`
 2. **Activity**: `#activity/learn::beginner`
 3. **Proficiency**: `#proficiency/firewalls::beginner`
@@ -344,15 +368,19 @@ See: THREE-LAYER-LOGSEQ-ARCHITECTURE.md → "Meta-Knowledge Extraction"
 ## 🛠️ CUSTOMIZATION
 
 ### Add Your Own Tags
+
 Edit `schemas/tag-schema.json` to add new dimensions
 
 ### Add Technical Terms
+
 Edit `dictionaries/technical-terms.json` to exclude from spell check
 
 ### Add Domain Mappings
+
 Create `tag-mappings/{source-type}-domain-mapping.csv`
 
 ### Adjust Validation Rules
+
 Edit `config.json` validation section
 
 ---
@@ -368,6 +396,7 @@ Edit `config.json` validation section
 | **[INTEGRATION-SECURITY-TESTING.md](INTEGRATION-SECURITY-TESTING.md)** | Add security/testing to existing code (zero breaking changes) | 3.5 hours |
 
 **What you'll get**:
+
 - ✅ SAST (Static Application Security Testing) with Bandit
 - ✅ DAST (Dynamic Application Security Testing) with Pytest
 - ✅ Type checking with MyPy
@@ -431,6 +460,7 @@ Full troubleshooting: IMPORT-PIPELINE-SETUP.md → "Troubleshooting"
 Choose your path:
 
 ### Path A: Learn First
+
 1. Read AUTOMATED-IMPORT-SYSTEM-SUMMARY.md
 2. Read THREE-LAYER-LOGSEQ-ARCHITECTURE.md
 3. Read IMPORT-PIPELINE-SETUP.md
@@ -438,12 +468,14 @@ Choose your path:
 5. Deploy full import
 
 ### Path B: Do First
+
 1. Run test import (IMPORT-PIPELINE-SETUP.md → Testing)
 2. Deploy full import
 3. Read documentation as needed
 4. Customize later
 
 ### Path C: Agent Runs It
+
 1. Provide LLM-AGENT-TASK-LIST.md to agent
 2. Agent runs autonomous import
 3. Review final report
@@ -454,6 +486,7 @@ Choose your path:
 ## 📦 WHAT'S INCLUDED
 
 ### Batch Import System
+
 ✅ Complete task specification (9,500+ words)  
 ✅ 5 Python modules (2,500+ lines)  
 ✅ LLM agent task list (5,000+ words)  
@@ -464,6 +497,7 @@ Choose your path:
 ✅ Reference databases (technical terms, tag schema)  
 
 ### Security & Testing Infrastructure (NEW)
+
 ✅ Complete SAST/DAST implementation plan (7 phases)  
 ✅ Security best practices (OWASP, CWE/SANS)  
 ✅ Testing strategy (unit, integration, performance)  
@@ -473,6 +507,7 @@ Choose your path:
 ✅ FOSS project standards documentation  
 
 ### Total Package
+
 ✅ 45,000+ words of documentation  
 ✅ 2,500+ lines of production code  
 ✅ 8 configuration files  
@@ -486,6 +521,7 @@ Choose your path:
 ## 🚀 YOU'RE READY
 
 You have everything needed to:
+
 - ✅ Import 600+ Lighthouse Labs files automatically
 - ✅ Add three layers of organization
 - ✅ Apply semantic tags to every file
@@ -504,6 +540,7 @@ You have everything needed to:
 ## 📞 DOCUMENT LOCATIONS
 
 Root directory:
+
 ```
 AUTOMATED-IMPORT-SYSTEM-SUMMARY.md ← START HERE
 THREE-LAYER-LOGSEQ-ARCHITECTURE.md
@@ -534,4 +571,3 @@ scripts/
 **Version**: 1.0
 
 Happy importing! 🚀
-

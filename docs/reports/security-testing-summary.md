@@ -11,9 +11,10 @@
 ### 3 Comprehensive Documents (15,000+ words)
 
 #### 1. **SECURITY-TESTING-INFRASTRUCTURE.md** (8,000+ words)
+
 - **Purpose**: Master specification for security and testing best practices
 - **Content**: 7 implementation phases over 21 days
-- **Includes**: 
+- **Includes**:
   - Phase 1: Foundation (Git, structure, dependencies)
   - Phase 2: Static Analysis (SAST with Black, Flake8, Pylint, MyPy, Bandit, Safety)
   - Phase 3: Testing Infrastructure (unit, integration, performance tests)
@@ -25,6 +26,7 @@
 - **Time Investment**: 2-3 weeks for full implementation
 
 #### 2. **SECURITY-TESTING-QUICKSTART.md** (4,500+ words)
+
 - **Purpose**: Week-by-week actionable implementation guide
 - **Content**:
   - Week 1: Foundation (Git, structure, dependencies, linting, Bandit)
@@ -38,6 +40,7 @@
 - **Time Investment**: 40-50 hours across 3 weeks (can be parallelized)
 
 #### 3. **INTEGRATION-SECURITY-TESTING.md** (2,500+ words)
+
 - **Purpose**: Add security/testing to existing batch import code
 - **Content**:
   - Current state analysis
@@ -55,6 +58,7 @@
 ## KEY TOOLS & FRAMEWORKS
 
 ### Security (SAST - Static Analysis)
+
 | Tool | Purpose | Config File | Why |
 |------|---------|-------------|-----|
 | Bandit | Find security issues | .bandit | Catches hardcoded secrets, unsafe functions |
@@ -65,6 +69,7 @@
 | Pylint | Deep analysis | .pylintrc | More comprehensive than Flake8 |
 
 ### Testing (DAST - Dynamic Analysis)
+
 | Tool | Purpose | Config File | Why |
 |------|---------|-------------|-----|
 | Pytest | Test framework | pytest.ini | Industry standard, powerful fixtures |
@@ -72,12 +77,14 @@
 | Pytest-xdist | Parallel testing | (built-in) | Speed up CI/CD runs |
 
 ### CI/CD
+
 | Tool | Purpose | Config File | Why |
 |------|---------|-------------|-----|
 | GitHub Actions | Automated testing | .github/workflows/*.yml | Runs tests on every push |
 | Tox | Multi-version testing | tox.ini | Test across Python 3.8-3.11 |
 
 ### Package Management
+
 | Tool | Purpose | Config File | Why |
 |------|---------|-------------|-----|
 | setuptools | Package distribution | setup.py | Standard Python packaging |
@@ -88,22 +95,26 @@
 ## IMPLEMENTATION CHECKLIST
 
 ### Quick Start (Today - 30 min)
+
 - [ ] Read INTEGRATION-SECURITY-TESTING.md (15 min)
 - [ ] Run Step 1-2: Git + configuration files (15 min)
 - [ ] See first tests pass
 
 ### Foundation (This Week - 4 hours)
+
 - [ ] Complete Steps 1-7 of INTEGRATION-SECURITY-TESTING.md
 - [ ] Get GitHub Actions working
 - [ ] Initial test suite (50%+ coverage)
 - [ ] See CI/CD turning green
 
 ### Production Ready (Next 2 weeks - 10 hours)
+
 - [ ] Expand test suite to 85%+ coverage (Week 2)
 - [ ] Document security policies and contributing (Week 2-3)
 - [ ] Full 7-phase implementation (reference SECURITY-TESTING-INFRASTRUCTURE.md)
 
 ### Release Ready (Week 4)
+
 - [ ] All tests passing
 - [ ] Security scan clean
 - [ ] Documentation complete
@@ -114,18 +125,21 @@
 ## THREE IMPLEMENTATION PATHS
 
 ### Path 1: "I Want to Understand Everything"
+
 1. Read: SECURITY-TESTING-INFRASTRUCTURE.md (full spec)
 2. Reference: SECURITY-TESTING-QUICKSTART.md (commands)
 3. Execute: Follow week-by-week guide
 4. Integrate: Use INTEGRATION-SECURITY-TESTING.md for integration points
 
 ### Path 2: "I Want to Start Today"
+
 1. Read: INTEGRATION-SECURITY-TESTING.md (30 min)
 2. Execute: Steps 1-2 (30 min)
 3. Expand: Follow SECURITY-TESTING-QUICKSTART.md (weeks 1-3)
 4. Reference: SECURITY-TESTING-INFRASTRUCTURE.md as needed
 
 ### Path 3: "I Want Someone Else to Do It"
+
 1. Give: SECURITY-TESTING-INFRASTRUCTURE.md to AI agent
 2. Give: SECURITY-TESTING-QUICKSTART.md as reference
 3. Monitor: Daily progress updates
@@ -140,11 +154,13 @@
 **What it does**: Analyzes code without running it
 
 **Tools we use**:
+
 - **Bandit**: Finds security anti-patterns (hardcoded passwords, unsafe subprocess calls, insecure functions)
 - **Safety**: Checks dependencies for known vulnerabilities
 - **MyPy**: Catches type errors that could cause runtime security issues
 
 **Example vulnerabilities caught**:
+
 ```python
 # ❌ CAUGHT: Hardcoded password
 password = "supersecret123"
@@ -163,12 +179,14 @@ file_path = user_dir / user_input  # Could be "../../../etc/passwd"
 **What it does**: Tests code by running it with various inputs
 
 **Tests we add**:
+
 - **Input Validation**: Does it handle malformed input?
 - **Error Handling**: Does it gracefully handle edge cases?
 - **Performance**: Does it handle large loads?
 - **Concurrency**: Does it handle parallel requests?
 
 **Example tests**:
+
 ```python
 def test_handles_huge_file(temp_dir):
     """Test system doesn't crash with oversized files."""
@@ -198,6 +216,7 @@ def test_permission_errors_handled(temp_dir):
 ## WORKFLOW AFTER SETUP
 
 ### Every Commit: Automatic Checks
+
 ```bash
 $ git commit -m "Fix: Stage 3 tag mapping logic"
 
@@ -219,6 +238,7 @@ $ git commit -m "Fix: Stage 3 tag mapping logic"
 ```
 
 ### Every Week: Manual Review
+
 ```bash
 $ make security
 → Bandit full report
@@ -238,12 +258,14 @@ $ pylint src/
 ## WHAT CHANGES FOR THE BATCH IMPORT CODE
 
 ### Zero Breaking Changes! ✅
+
 - All existing Python code works as-is
 - Can run `python src/orchestrate_import.py` immediately
 - All CSV outputs stay the same
 - No configuration changes needed
 
-### What's Added (Non-invasive):
+### What's Added (Non-invasive)
+
 1. **Type hints** on function signatures (optional)
 2. **Docstrings** on public functions (optional)
 3. **Test files** in separate `tests/` directory
@@ -290,9 +312,10 @@ def identify_files(source_dir: Path) -> List[Path]:
 
 ## SUCCESS METRICS
 
-### After Implementation, You'll Have:
+### After Implementation, You'll Have
 
 #### Security ✅
+
 - [x] Bandit scan: No CRITICAL or HIGH issues
 - [x] Dependency scan: No known vulnerabilities
 - [x] Security policy: SECURITY.md published
@@ -300,6 +323,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 - [x] No hardcoded secrets in code
 
 #### Quality ✅
+
 - [x] Test coverage: 85%+ (automated measurement)
 - [x] Pylint score: 8.0+ out of 10
 - [x] Type coverage: 80%+
@@ -307,6 +331,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 - [x] Passes on Python 3.8-3.11
 
 #### Reliability ✅
+
 - [x] All unit tests passing
 - [x] All integration tests passing
 - [x] Handles edge cases gracefully
@@ -314,6 +339,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 - [x] Comprehensive error logging
 
 #### Maintainability ✅
+
 - [x] Code is well-documented
 - [x] Clear contributing guidelines
 - [x] Architecture documented
@@ -321,6 +347,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 - [x] Ready for team collaboration
 
 #### FOSS Ready ✅
+
 - [x] MIT/Apache license chosen
 - [x] CODE_OF_CONDUCT.md present
 - [x] CONTRIBUTING.md clear
@@ -352,6 +379,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 ## NEXT STEPS: Your Decision
 
 ### Option 1: Start Today (Quick)
+
 ```
 1. Read: INTEGRATION-SECURITY-TESTING.md (15 min)
 2. Execute: Steps 1-2 (30 min)
@@ -360,6 +388,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 ```
 
 ### Option 2: Understand First (Thorough)
+
 ```
 1. Read: SECURITY-TESTING-INFRASTRUCTURE.md (full)
 2. Read: SECURITY-TESTING-QUICKSTART.md (week-by-week)
@@ -369,6 +398,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 ```
 
 ### Option 3: Delegate to Agent (Hands-off)
+
 ```
 1. Provide: SECURITY-TESTING-QUICKSTART.md to agent
 2. Provide: Your source directory path
@@ -382,6 +412,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 ## RESOURCES & REFERENCES
 
 ### Official Documentation
+
 - [Python Type Hints](https://www.python.org/dev/peps/pep-0484/)
 - [Pytest Documentation](https://docs.pytest.org/)
 - [GitHub Actions](https://github.com/features/actions)
@@ -389,6 +420,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 - [CWE/SANS Top 25](https://cwe.mitre.org/top25/)
 
 ### Related Documents in This System
+
 - See: INTEGRATION-SECURITY-TESTING.md (Step-by-step)
 - See: SECURITY-TESTING-QUICKSTART.md (Day-by-day)
 - See: SECURITY-TESTING-INFRASTRUCTURE.md (Complete spec)
@@ -401,6 +433,7 @@ def identify_files(source_dir: Path) -> List[Path]:
 Before considering implementation complete:
 
 ### Code Quality
+
 - [ ] Black formatted
 - [ ] Flake8 clean
 - [ ] Pylint > 8.0
@@ -408,6 +441,7 @@ Before considering implementation complete:
 - [ ] No type errors
 
 ### Security
+
 - [ ] Bandit scan clean (no CRITICAL/HIGH)
 - [ ] Safety check passes
 - [ ] No hardcoded secrets
@@ -415,6 +449,7 @@ Before considering implementation complete:
 - [ ] SECURITY.md published
 
 ### Testing
+
 - [ ] Coverage > 85%
 - [ ] All tests pass locally
 - [ ] All tests pass on GitHub Actions
@@ -422,6 +457,7 @@ Before considering implementation complete:
 - [ ] Performance acceptable
 
 ### Documentation
+
 - [ ] README complete
 - [ ] CONTRIBUTING.md present
 - [ ] SECURITY.md present
@@ -429,6 +465,7 @@ Before considering implementation complete:
 - [ ] Code documented with docstrings
 
 ### Deployment
+
 - [ ] Version bumped
 - [ ] LICENSE present
 - [ ] setup.py working

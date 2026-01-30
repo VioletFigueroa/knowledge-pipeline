@@ -12,6 +12,7 @@
 Create these pages in your Logseq `pages/` folder:
 
 **`00-Dashboard.md`** - Master entry point
+
 ```markdown
 ---
 title:: Dashboard - Learning Compass
@@ -47,6 +48,7 @@ updated:: 2025-12-18
 ```
 
 **`01-Lighthouse-Labs-Master-Index.md`** - Course navigation
+
 ```markdown
 ---
 title:: Lighthouse Labs Cybersecurity - Master Index
@@ -87,6 +89,7 @@ import-date:: 2025-12-18
 ```
 
 **`02-Topics-by-Proficiency.md`** - Proficiency dashboard
+
 ```markdown
 ---
 title:: Topics by Proficiency Level
@@ -118,6 +121,7 @@ updated:: 2025-12-18
 ```
 
 **`03-Projects-and-Goals.md`** - Active work hub
+
 ```markdown
 ---
 title:: Projects and Career Goals
@@ -144,6 +148,7 @@ type:: project-hub
 In Logseq, create reference pages for each tag dimension:
 
 **`Reference-Tags-Domain.md`**:
+
 ```markdown
 ---
 title:: Tag Reference - Domain Tags
@@ -172,6 +177,7 @@ Use to classify WHAT the content is about.
 ```
 
 Create similar reference pages for:
+
 - `Reference-Tags-Activity.md`
 - `Reference-Tags-Proficiency.md`
 - `Reference-Tags-Project.md`
@@ -188,6 +194,7 @@ Create similar reference pages for:
 For Lighthouse Labs, you already have the course structure. Create a mapping file:
 
 **`import-metadata-lighthouse-labs.csv`**:
+
 ```csv
 course,week,title,file,created_date,topic_primary,topic_secondary
 1,1,Virtualization Basics,001.md,2025-11-15,virtualization,infrastructure
@@ -201,6 +208,7 @@ This enables automated tagging during import.
 ### Task 2.2: Create Import Script Template
 
 Create a Python script that will:
+
 1. Read each markdown file
 2. Add Layer 1 metadata
 3. Add Layer 2 initial tags  
@@ -208,6 +216,7 @@ Create a Python script that will:
 5. Output ready-to-import files
 
 **`import-with-layers.py`** (simplified):
+
 ```python
 #!/usr/bin/env python3
 import os
@@ -357,6 +366,7 @@ if __name__ == '__main__':
 ```
 
 **Usage**:
+
 ```bash
 python3 import-with-layers.py
 # This creates logseq_notes_layered/ with all 600 files layered with metadata and tags
@@ -389,6 +399,7 @@ cp logseq_notes_layered/*.md ~/Logseq/graph/pages/
 ### Task 3.3: Verify Import
 
 Check that:
+
 - [ ] All 600 files appear in search
 - [ ] Master index page loads: `[[01-Lighthouse-Labs-Master-Index]]`
 - [ ] Tags work: Try searching `#source/lighthouse-labs`
@@ -406,6 +417,7 @@ For each topic you review/study:
 **Step 1: Open the note**
 
 **Step 2: Review connections section**
+
 ```markdown
 ### Prerequisites
 - [ ] [[OSI Model]] - Network layers foundation
@@ -413,6 +425,7 @@ For each topic you review/study:
 ```
 
 **Step 3: Fill in real prerequisites**
+
 ```markdown
 ### Prerequisites
 - ✅ [[OSI Model - Complete]] - Understand layer architecture
@@ -420,6 +433,7 @@ For each topic you review/study:
 ```
 
 **Step 4: Fill in "enables" section**
+
 ```markdown
 ### Enables Learning Of
 - ✅ Enables [[VLAN Configuration]] - VLANs are segmentation implementation
@@ -427,12 +441,14 @@ For each topic you review/study:
 ```
 
 **Step 5: Note if used in project**
+
 ```markdown
 ### Used In Projects
 - [[Project: Homelab Network]] - Implementing segmentation design
 ```
 
 **Step 6: Update proficiency tag**
+
 ```markdown
 tags:: 
   - #proficiency/network-segmentation::intermediate  # Changed from beginner
@@ -447,6 +463,7 @@ tags::
 ### Create Proficiency Report Page
 
 **`Reports-Proficiency-Summary.md`**:
+
 ```markdown
 ---
 title:: Proficiency Report - December 2025
@@ -552,6 +569,7 @@ Run this query monthly to track growth:
 ### Create Project Hub
 
 **`Project-Homelab-Network-Infrastructure.md`**:
+
 ```markdown
 ---
 title:: Project: Homelab Network Infrastructure
@@ -615,24 +633,28 @@ Design and implement a segmented home network with firewalls and VLANs.
 ## QUICK START CHECKLIST
 
 ### Week 1: Foundation
+
 - [ ] Create index pages (Task 1.1)
 - [ ] Document tag schema (Task 1.2)
 - [ ] Create metadata mapping (Task 2.1)
 - [ ] Test import script on 10 sample notes (Task 2.2)
 
 ### Week 2: Import
+
 - [ ] Run import script on all 600 files (Task 2.2)
 - [ ] Copy to Logseq (Task 3.1)
 - [ ] Re-index (Task 3.2)
 - [ ] Verify 5+ queries work (Task 3.3)
 
 ### Week 3: Populate Layer 3
+
 - [ ] Review 10 notes from each course
 - [ ] Add real prerequisites and connections
 - [ ] Update proficiency tags based on understanding
 - [ ] Create first proficiency report
 
 ### Week 4: Build Views
+
 - [ ] Create proficiency dashboard (Task 5)
 - [ ] Create career goal page (Phase 3B)
 - [ ] Create project hub (Phase 6)
@@ -645,10 +667,12 @@ Design and implement a segmented home network with firewalls and VLANs.
 **Scenario**: You're reviewing "Firewall Configuration"
 
 **Step 1: Find the note**
+
 - Search: `firewall configuration` in Logseq
 - Opens: `Lighthouse Labs > Course 1 > Week 3 > Firewalls > Firewall Configuration`
 
 **Step 2: See what's there**
+
 ```markdown
 ---
 title:: "Firewall Configuration Best Practices"
@@ -668,11 +692,13 @@ tags::
 ```
 
 **Step 3: Study the content**
+
 - Read through
 - Do any associated lab
 - Take notes
 
 **Step 4: Update based on your experience**
+
 ```markdown
 ---
 title:: "Firewall Configuration Best Practices"
@@ -709,6 +735,7 @@ tags::
 ```
 
 **Step 5: See impact**
+
 - Run query: `#proficiency/firewalls::intermediate` → Now appears
 - Run query: `#project/homelab-network` → Now lists this note as resource
 - Check goal: `[[Goal: Security Analyst Role]]` → Now shows as ready skill
@@ -718,16 +745,19 @@ tags::
 ## MAINTENANCE
 
 **Monthly**:
+
 - [ ] Run proficiency report
 - [ ] Update 5+ notes with refined proficiency tags
 - [ ] Check for new project connections
 
 **Quarterly**:
+
 - [ ] Review all "gap" items
 - [ ] Move topics from gap → intermediate → strength
 - [ ] Identify new topics to add
 
 **Annually**:
+
 - [ ] Full proficiency audit
 - [ ] Reorganize by new goals
 - [ ] Build skills summary for resume/portfolio
@@ -738,6 +768,7 @@ tags::
 
 **Q: Proficiency query returns nothing**
 A: Tags may be using wrong format. Check:
+
 - Tag format: `#proficiency/topic::level`
 - Level values: `novice`, `beginner`, `intermediate`, `competent`, `expert`, `gap`, `strength`
 
@@ -749,4 +780,3 @@ A: Make sure notes have `#project/projectname` tag
 
 **Q: Queries are slow**
 A: Logseq may be indexing. Wait a minute, then try again.
-

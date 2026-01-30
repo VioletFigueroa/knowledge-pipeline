@@ -68,11 +68,13 @@ Choose ONE path forward:
 ## 🚀 QUICK START PATH (30 MINUTES - Start Now!)
 
 ### Minute 0-20: Reading
+
 - [ ] Open: `INTEGRATION-SECURITY-TESTING.md`
 - [ ] Read: Sections 1-3 (Current State → Directory Restructuring)
 - [ ] Read: Steps 1-2 under "File Creation Plan"
 
 ### Minute 20-30: Execution
+
 ```bash
 # Step 1: Initialize git (5 min)
 cd /home/violetf/Games2/Nextcloud/Documents/Notes
@@ -96,6 +98,7 @@ git commit -m "Initial: Add security & testing infrastructure"
 ```
 
 ### After 30 Minutes: You'll Have ✅
+
 - [ ] Git repository initialized
 - [ ] Code organized (src/, tests/, docs/)
 - [ ] First commit in git log
@@ -128,9 +131,11 @@ git commit -m "Initial: Add security & testing infrastructure"
   - [ ] Create `.pylintrc` (or generate)
   - [ ] Add Black config to `pyproject.toml`
 - [ ] Install tools:
+
   ```bash
   pip install -r requirements-dev.txt
   ```
+
 - [ ] Run first lint:
   - [ ] `black src/` (format code)
   - [ ] `flake8 src/` (check compliance)
@@ -142,10 +147,12 @@ git commit -m "Initial: Add security & testing infrastructure"
   - [ ] Create `.bandit`
   - [ ] Install bandit + safety
 - [ ] Run security scan:
+
   ```bash
   bandit -r src/
   safety check
   ```
+
 - [ ] Document results
 
 ### Day 5: Basic Tests (2 hours)
@@ -156,9 +163,11 @@ git commit -m "Initial: Add security & testing infrastructure"
   - [ ] Create `tests/test_stage_1.py` (sample)
 - [ ] Create `pytest.ini`
 - [ ] Run first tests:
+
   ```bash
   pytest tests/ -v
   ```
+
 - [ ] Verify:
   - [ ] At least 1 test passing
   - [ ] `make test` works
@@ -186,9 +195,11 @@ git commit -m "Initial: Add security & testing infrastructure"
   - [ ] `tests/test_stage_4.py` (complete)
   - [ ] `tests/test_stage_5.py` (complete)
 - [ ] Run tests:
+
   ```bash
   pytest tests/ --cov=src
   ```
+
 - [ ] Target: Coverage > 70%
 
 ### Days 9-10: Integration Tests (4 hours)
@@ -202,9 +213,11 @@ git commit -m "Initial: Add security & testing infrastructure"
 ### Days 11-12: Coverage & Validation (4 hours)
 
 - [ ] Generate coverage report:
+
   ```bash
   pytest tests/ --cov=src --cov-report=html
   ```
+
 - [ ] Review coverage report
 - [ ] Add missing tests
 - [ ] Target: Coverage > 85%
@@ -303,12 +316,14 @@ NOTES:
 ## ⚠️ COMMON ISSUES & QUICK FIXES
 
 ### Issue: "Module not found"
+
 ```bash
 # Fix: Install dependencies
 pip install -r requirements-dev.txt
 ```
 
 ### Issue: "pytest: command not found"
+
 ```bash
 # Fix: Ensure in virtual environment
 source venv/bin/activate  # if using venv
@@ -316,6 +331,7 @@ pip install pytest
 ```
 
 ### Issue: "Black formatting conflict"
+
 ```bash
 # Fix: Run black then flake8
 black src/
@@ -323,12 +339,14 @@ flake8 src/  # Will be compliant now
 ```
 
 ### Issue: "Tests taking too long"
+
 ```bash
 # Fix: Run tests in parallel
 pytest tests/ -n auto  # if pytest-xdist installed
 ```
 
 ### Issue: "Can't commit (git)"
+
 ```bash
 # Fix: Add files first
 git add .
@@ -357,18 +375,21 @@ Once basic implementation is complete:
 After each week, ask yourself:
 
 ### Week 1: Foundation
+
 - [ ] Can I run all linting tools?
 - [ ] Can I run basic tests?
 - [ ] Is my first test passing?
 - [ ] Do I understand the tools?
 
 ### Week 2: Testing
+
 - [ ] Can I write unit tests?
 - [ ] Do I understand pytest fixtures?
 - [ ] Is my coverage > 85%?
 - [ ] Can I read coverage reports?
 
 ### Week 3: Release
+
 - [ ] Can I document code quality?
 - [ ] Can I set up GitHub Actions?
 - [ ] Do I understand CI/CD?
@@ -399,7 +420,9 @@ Ready for Release             [ ]       [ ]       [✓]       Done
 ## 🎁 BONUS: TIME-SAVING TIPS
 
 ### Use Templates
+
 Copy the test structure for each stage:
+
 ```python
 # Same pattern for all stages
 @pytest.mark.unit
@@ -410,7 +433,9 @@ def test_stage_n_functionality():
 ```
 
 ### Automate Formatting
+
 Run before every commit:
+
 ```bash
 black src/
 flake8 src/
@@ -418,7 +443,9 @@ pytest tests/
 ```
 
 ### Batch Commands
+
 Create script for all checks:
+
 ```bash
 #!/bin/bash
 make lint
@@ -428,6 +455,7 @@ echo "All checks complete!"
 ```
 
 ### Use IDE Tools
+
 - VS Code Black extension
 - VS Code Flake8 extension
 - VS Code Pylint extension
@@ -440,23 +468,27 @@ echo "All checks complete!"
 Before declaring success, verify:
 
 ### Code Quality
+
 - [ ] `make lint` passes 100%
 - [ ] `make security` has no CRITICAL
 - [ ] Coverage > 85%
 - [ ] Type checking passes
 
 ### Testing
+
 - [ ] `make test` all pass
 - [ ] All tests run on Python 3.8-3.11
 - [ ] Performance acceptable
 
 ### Documentation
+
 - [ ] SECURITY.md published
 - [ ] CONTRIBUTING.md clear
 - [ ] README.md complete
 - [ ] Code has docstrings
 
 ### Deployment
+
 - [ ] .gitignore working
 - [ ] setup.py functional
 - [ ] Can install locally: `pip install .`
@@ -464,15 +496,17 @@ Before declaring success, verify:
 
 ---
 
-## 💪 YOU'VE GOT THIS!
+## 💪 YOU'VE GOT THIS
 
 **Remember:**
+
 - You're not starting from scratch; you have templates
 - Each day has clear tasks
 - All commands are provided
 - You can do this! ✨
 
 **If stuck:**
+
 1. Check relevant documentation
 2. Search for exact error message
 3. Review example in documentation
